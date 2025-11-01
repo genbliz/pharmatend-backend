@@ -1,0 +1,5 @@
+{
+  "pkg": {
+    "assets": ["dist-bin/caxa-in/lib/**/*", "dist-bin/caxa-in/prebuilds/**/*"]
+  }
+}

@@ -1,0 +1,5 @@
+import { TenantLevelS3UploadServiceBase } from "@/services/tenant-level-s3-upload-service-base";
+
+export const TenantAssetS3UploadService = new TenantLevelS3UploadServiceBase({
+  folder: "tenantAsset",
+});

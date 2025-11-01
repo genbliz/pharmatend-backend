@@ -1,0 +1,3 @@
+* payments history by client
+* payments by weekly, daily, monthly
+* payment mode

@@ -1,0 +1,16 @@
+Couch Local
+http://localhost:5984/_session
+
+http://localhost:5984/_utils/index.html
+
+https://docs.couchdb.org/en/latest/setup/single-node.html
+
+https://docs.couchdb.org/en/latest/config/auth.html#config-admins
+
+https://github.com/apache/couchdb-nano/blob/main/lib/nano.js
+
+https://www.vultr.com/docs/how-to-install-apache-couchdb-on-centos-7/
+
+https://medium.com/@eiri/couchdb-authorization-in-nutshell-5ae697fe9a
+
+https://docs.couchdb.org/en/stable/config/auth.html#jwt_auth/required_claims

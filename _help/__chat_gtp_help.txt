@@ -1,0 +1,72 @@
+Design a database schema for an supermarket store
+----
+
+Designing a database schema for a supermarket store involves identifying the entities and their relationships that need to be stored in the database to efficiently manage the store's operations. Here's a basic outline of the database schema:
+
+1. **Products Table:**
+   - `product_id` (Primary Key)
+   - `product_name`
+   - `description`
+   - `category`
+   - `price`
+   - `stock_quantity`
+
+2. **Customers Table:**
+   - `customer_id` (Primary Key)
+   - `first_name`
+   - `last_name`
+   - `email`
+   - `phone`
+   - `address`
+
+3. **Orders Table:**
+   - `order_id` (Primary Key)
+   - `customer_id` (Foreign Key referencing Customers table)
+   - `order_date`
+   - `total_amount`
+
+4. **Order_Items Table:**
+   - `order_item_id` (Primary Key)
+   - `order_id` (Foreign Key referencing Orders table)
+   - `product_id` (Foreign Key referencing Products table)
+   - `quantity`
+   - `subtotal`
+
+5. **Suppliers Table:**
+   - `supplier_id` (Primary Key)
+   - `supplier_name`
+   - `contact_person`
+   - `phone`
+   - `email`
+   - `address`
+
+6. **Product_Suppliers Table:** (to represent the many-to-many relationship between products and suppliers)
+   - `product_supplier_id` (Primary Key)
+   - `product_id` (Foreign Key referencing Products table)
+   - `supplier_id` (Foreign Key referencing Suppliers table)
+   - `unit_price`
+
+7. **Transactions Table:** (to track cash register transactions)
+   - `transaction_id` (Primary Key)
+   - `transaction_date`
+   - `transaction_type` (e.g., sale, refund, expense)
+   - `amount`
+
+8. **Employees Table:**
+   - `employee_id` (Primary Key)
+   - `first_name`
+   - `last_name`
+   - `email`
+   - `phone`
+   - `address`
+   - `position`
+   - `salary`
+
+9. **Inventory_Log Table:** (to track changes in inventory over time)
+   - `log_id` (Primary Key)
+   - `product_id` (Foreign Key referencing Products table)
+   - `action` (e.g., purchase, sale, restock, return)
+   - `quantity`
+   - `timestamp`
+
+This is a basic schema that covers essential aspects of a supermarket store. Depending on your specific requirements, you might need to add more tables or modify the schema accordingly. Additionally, you can enforce referential integrity through foreign key constraints and utilize indexes for improved performance on frequently accessed columns.
