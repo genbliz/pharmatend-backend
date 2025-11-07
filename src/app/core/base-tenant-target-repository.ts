@@ -11,7 +11,7 @@ interface ICoreRepoOptions<T> {
   featureEntity: string;
   strictRequiredFields: (keyof T)[];
   baseTableName: string;
-  fieldAliases: [keyof T, keyof T][];
+  fieldAliases: IFieldAliases<T>;
 }
 
 type Paging = "tenantId" | "featureEntityTenantId" | "featureEntity" | "targetId" | "createdAtDate" | "recordDate";

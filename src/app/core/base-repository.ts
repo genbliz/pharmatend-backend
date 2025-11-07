@@ -6,6 +6,7 @@ import type {
   IMocodyQueryDefinition,
   IMocodyFieldCondition,
   IMocodyKeyConditionParams,
+  IFieldAliases,
 } from "mocody";
 import { ICoreEntityBaseModel, IDataSortKey } from "./base-types.js";
 import { MyQueryBuilder } from "./base-query-builder.js";
@@ -17,7 +18,7 @@ interface ICoreRepoOptions<T> {
   strictRequiredFields: (keyof T)[];
   secondaryIndexOptions: IMocodyIndexDefinition<T>[];
   baseTableName: string;
-  fieldAliases: [keyof T, keyof T][];
+  fieldAliases: IFieldAliases<T>;
 }
 
 type IManyQueryType<T> = Omit<T, "featureEntity" | "createdAtDate" | "recordDate">;
@@ -328,21 +329,8 @@ export abstract class BaseRepository<T extends ICoreEntityBaseModel> extends Roo
     return [this.root_getFeatureEntityName(), mmdd].join("::");
   }
 
-  private validateFieldAlias(data01: Partial<T> & ICoreEntityBaseModel) {
-    const fieldAliaseData01 = super.root_getFieldAliases();
-    if (fieldAliaseData01?.length && typeof data01 === "object") {
-      fieldAliaseData01.forEach(([field01, field02]) => {
-        if (data01[field01] !== data01[field02]) {
-          const fe = this.root_getFeatureEntityName();
-          throw this.root_util.createFriendlyValidationError(`Aliases mismatched for '${fe}'`);
-        }
-      });
-    }
-  }
-
   protected async base_createOne({ data, sessionUser }: { data: T; sessionUser?: ISessionUser | null | undefined }) {
     const data01 = this.base_formatNewData({ data, sessionUser });
-    this.validateFieldAlias(data01);
 
     const result = await this.root__mocodyBaseInstance().mocody_createOne({
       data: data01,
@@ -430,8 +418,6 @@ export abstract class BaseRepository<T extends ICoreEntityBaseModel> extends Roo
     }
 
     const finalData = { ...updateData, ...dataMust };
-
-    this.validateFieldAlias(finalData);
 
     const result = await this.root__mocodyBaseInstance().mocody_updateOne({
       dataId,

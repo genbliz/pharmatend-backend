@@ -1,6 +1,7 @@
 import { UtilService } from "@/services/util-service.js";
 import { ISessionUser } from "@/account/auth/auth-types.js";
 import type {
+  IFieldAliases,
   IMocodyFieldCondition,
   IMocodyIndexDefinition,
   IMocodyKeyConditionParams,
@@ -20,7 +21,7 @@ interface ICoreRepoOptions<T> {
   strictRequiredFields: (keyof T)[];
   baseTableName: string;
   secondaryIndexOptions: IMocodyIndexDefinition<T>[];
-  fieldAliases: [keyof T, keyof T][];
+  fieldAliases: IFieldAliases<T>;
 }
 
 type IQueryIndexes = "tenantId" | "featureEntityTenantId" | "createdAtDate" | "recordDate" | "numberCode" | "shortCode";

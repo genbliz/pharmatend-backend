@@ -6,7 +6,7 @@ import { StatusCode } from "../helper/status-code.js";
 import { GetFriendlyErrorMessage } from "../helper/response-model.js";
 import { envConfig } from "../config/env.js";
 
-export class BaseHelperUtils {
+export class BaseErrorHelperUtils {
   validateRequiredString(keyValueValidates: { [key: string]: string | null | undefined }) {
     const errors: string[] = [];
     Object.entries(keyValueValidates).forEach(([key, value]) => {

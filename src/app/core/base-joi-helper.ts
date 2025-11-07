@@ -3,6 +3,8 @@ import { isValidPhoneNumber, findNumbers } from "libphonenumber-js";
 import { UtilService } from "@/services/util-service.js";
 import { DateService } from "../services/date-service.js";
 
+export type ISchemaMap = Joi.SchemaMap;
+
 export function getJoiValidationErrors(err: Joi.ValidationError): string | null {
   if (err?.details?.length) {
     const details = UtilService.convertObjectToJsonPlainObject(err.details);

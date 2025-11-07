@@ -2,7 +2,7 @@ import "source-map-support/register.js";
 import { LoggingService } from "@/services/logging-service.js";
 import { LambdaHelperService } from "#func/lambda-helper.js";
 import type { Context } from "aws-lambda";
-import type { IJobNameParams } from "@/jobs/job-types.js";
+// import type { IJobNameParams } from "@/jobs/job-types.js";
 import { getAWSCredentialCollection } from "@/config/env.js";
 import { LambdaClient, InvokeCommandInput, InvokeCommand } from "@aws-sdk/client-lambda";
 
@@ -55,7 +55,7 @@ async function myWarmUpFunc(warmUpFunctions: string[] | undefined) {
   LoggingService.log(`Warm Up Finished with ${invokes.filter((r) => !r).length} invoke errors`);
 }
 
-const runWarmUpFunc = async (event: { jobsToRun?: IJobNameParams[]; warmUpFunctions?: string[] }, context: Context) => {
+const runWarmUpFunc = async (event: { jobsToRun?: any[]; warmUpFunctions?: string[] }, context: Context) => {
   const time = new Date().toISOString();
   LoggingService.log(`WarmUp Handler: "${context.functionName}"; ran @ ${time}`);
   LoggingService.log(JSON.stringify(event));

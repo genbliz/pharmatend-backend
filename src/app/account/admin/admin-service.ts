@@ -4,11 +4,11 @@ import { CachedDataRepository } from "../cached-data/cached-data-repository.js";
 import { ITenant, ISuperAdminRemoteLoginResult, ISuperAdministrator } from "./admin-types.js";
 import { ISessionUser } from "../auth/auth-types.js";
 import { DateService } from "@/services/date-service.js";
-import { BaseHelperUtils } from "@/core/base-error-helper-utils.js";
+import { BaseErrorHelperUtils } from "@/core/base-error-helper-utils.js";
 import { CommonConfig } from "../../config/config-common.js";
 import { CreateFriendlyError } from "../../helper/response-model.js";
 
-class AdminServiceBase extends BaseHelperUtils {
+class AdminServiceBase extends BaseErrorHelperUtils {
   private readonly cacheCategoryTenant = "3b9b793dce41b165fe0a05196b09cdd5c";
   private readonly cacheCategoryAdminUser = "7b809bb252f26fe3ddbf4f2907c02d794";
 

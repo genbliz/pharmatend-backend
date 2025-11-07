@@ -1,6 +1,6 @@
 import { envConfig } from "@/config/env.js";
 import http from "http";
-import App from "./app.js";
+import App from "./app/index.js";
 import { LoggingService } from "@/services/logging-service.js";
 
 // set App process variables

@@ -1,7 +1,7 @@
 import lodash from "lodash";
 import Joi from "joi";
 import { Response, Request } from "express";
-import { BaseHelperUtils } from "./base-error-helper-utils.js";
+import { BaseErrorHelperUtils } from "./base-error-helper-utils.js";
 import { AuthSessionHelperService } from "@/account/auth/auth-session-helper-service.js";
 import { DefinedUserPermission, IPermissionItem } from "@/account/authorization/authorization-permission.js";
 import { ICoreRequestParams, IDataSortKey } from "./base-types.js";
@@ -14,7 +14,7 @@ import { StatusCode } from "../helper/status-code.js";
 import { ResponseMessage } from "../helper/response-message.js";
 import { ResponseModelResolve } from "../helper/response-model.js";
 
-class BaseControllerBase extends BaseHelperUtils {
+class BaseControllerBase extends BaseErrorHelperUtils {
   readonly DefinedRequiredPermission = { ...DefinedUserPermission } as const;
   readonly ResponseMessages = { ...ResponseMessage } as const;
   readonly DEFAULT_PAGE_SIZE = 20;

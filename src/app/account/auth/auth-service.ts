@@ -13,10 +13,10 @@ import { ITenant } from "../admin/admin-types.js";
 import { getAllAuthorizationPermissionParameters } from "../authorization/authorization-permission.js";
 import { DateService } from "@/services/date-service.js";
 import { SystemService } from "@/services/system-service.js";
-import { BaseHelperUtils } from "@/core/base-error-helper-utils.js";
+import { BaseErrorHelperUtils } from "@/core/base-error-helper-utils.js";
 import { ResponseMessage } from "../../helper/response-message.js";
 
-class AuthServiceBase extends BaseHelperUtils {
+class AuthServiceBase extends BaseErrorHelperUtils {
   async loginUserByParams({
     password,
     shortCode,

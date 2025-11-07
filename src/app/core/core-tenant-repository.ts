@@ -7,7 +7,7 @@ interface ICoreRepoOptions<T> {
   schemaSubDef: Joi.SchemaMap;
   featureEntity: string;
   strictRequiredFields: (keyof T)[];
-  fieldAliases: [keyof T, keyof T][];
+  fieldAliases: IFieldAliases<T>;
 }
 
 export abstract class CoreTenantRepository<T extends ICoreEntityTenantModel> extends BaseTenantRepository<T> {
