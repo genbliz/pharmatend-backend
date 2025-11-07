@@ -7,9 +7,15 @@ import type {
   IBaseSchemaDefinitionOther,
   ICoreEntityTargetModel,
   IBaseSchemaDefinitionTenantTarget,
+  IFieldAliases,
 } from "@/core/base-types.js";
 
-import { JoiDateISOValidation, JoiDateFormat_YYYY_MM_DD, JoiStringCustomId, JoiStripWhenNull } from "@/core/base-joi-helper.js";
+import {
+  JoiDateISOValidation,
+  JoiDateFormat_YYYY_MM_DD,
+  JoiStringCustomId,
+  JoiStripWhenNull,
+} from "@/core/base-joi-helper.js";
 
 type IField<T> = { [P in keyof T]?: "" | 1 } | (keyof T)[];
 
@@ -18,7 +24,7 @@ interface ITableConfig<T> {
   returnFields: IField<T> | "basic";
   excludeFields?: IField<T>;
   schemaExcludes?: IField<T>;
-  fieldAliases?: [keyof T, keyof T][];
+  fieldAliases?: IFieldAliases<T>;
 }
 
 const appCoreSchemaDefinition: IBaseSchemaDefinitionCore<ICoreEntityBaseModel> = {
@@ -152,7 +158,7 @@ function BaseGenericModelFun<T, ISchemaDef>({ baseSchema, basicFields }: { baseS
   return class BaseModel {
     private static _modelProps = new Map<string, { tableName: string; liteFields: (keyof T)[] | undefined }>();
     private static _schemaDef = new Map<string, ISchemaDef>();
-    private static _fieldAliases: [keyof T, keyof T][] = [];
+    private static _fieldAliases: IFieldAliases<T> = [];
 
     static getTableName() {
       const propData = this._modelProps.get(this.name);

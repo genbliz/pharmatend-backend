@@ -1,12 +1,11 @@
 import { LoggingService } from "@/services/logging-service.js";
-
 import { Router, Request, Response } from "express";
 import { StaffRepository } from "@/common/staff/staff-repository.js";
 import { StatusCode } from "@/helper/status-code.js";
 import { BaseController } from "@/core/base-controller.js";
 import { envConfig } from "@/config/env.js";
 import { ICountryInfo } from "@/core/base-types.js";
-import countriesJson from "@/../assets/countries.json";
+import countriesJson from "@/assets/countries.json" with { type: "json" };
 
 const router = Router();
 

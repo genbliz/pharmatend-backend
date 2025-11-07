@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { IMocodyCoreEntityModel } from "mocody";
+import { IMocodyCoreEntityModel, IFieldAliases as IFieldAliases0 } from "mocody";
 
 export interface ICoreEntityBaseModel extends IMocodyCoreEntityModel {
   createdAtDate: string;
@@ -53,6 +53,8 @@ export type IBaseSchemaDefinitionOther<T> = Pick<
   CoreSchemaType<T>,
   Exclude<keyof CoreSchemaType<T>, keyof ICoreEntityBaseModel>
 >;
+
+export type IFieldAliases<T> = IFieldAliases0<T>;
 
 export interface IDictionary<T> {
   [name: string]: T;

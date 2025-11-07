@@ -27,9 +27,9 @@ StaffModel.init({
   tableName: "staffs",
   returnFields: "basic",
   fieldAliases: [
-    ["email", "sk01"],
-    ["phone", "sk02"],
-    ["department", "sk03"],
-    ["managerId", "targetId"],
+    { source: "email", dest: "sk01" },
+    { source: "phone", dest: "sk02" },
+    { source: "department", dest: "sk03" },
+    { source: "managerId", dest: "targetId" },
   ],
 });

@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { DefinedTableNames } from "@/core/base-constants.js";
 import { BaseTenantTargetRepository } from "@/core/base-tenant-target-repository.js";
-import { ICoreEntityTargetModel } from "@/core/base-types.js";
+import { ICoreEntityTargetModel, IFieldAliases } from "@/core/base-types.js";
 
 interface ICoreRepoOptions<T> {
   schemaSubDef: Joi.SchemaMap;

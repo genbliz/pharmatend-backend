@@ -8,7 +8,7 @@ class BcryptServiceBase {
         if (err) {
           reject(err);
         } else {
-          resolve(success);
+          resolve(success === true);
         }
       });
     });
@@ -24,8 +24,10 @@ class BcryptServiceBase {
       bcrypt.genSalt(intensity, (err, salt) => {
         if (err) {
           reject(err);
-        } else {
+        } else if (salt) {
           resolve(salt);
+        } else {
+          reject("Invalid salt");
         }
       });
     });
@@ -36,8 +38,10 @@ class BcryptServiceBase {
       bcrypt.hash(password, salt, (err, hash) => {
         if (err) {
           reject(err);
-        } else {
+        } else if (hash) {
           resolve(hash);
+        } else {
+          reject("Invalid hash");
         }
       });
     });

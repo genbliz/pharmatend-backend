@@ -14,8 +14,8 @@ OrderModel.init({
     code: JoiStringDefaultOrStrip({ isRequired: true }),
   },
   fieldAliases: [
-    ["customerId", "targetId"],
-    ["code", "sk01"],
+    { source: "customerId", dest: "targetId" },
+    { source: "code", dest: "sk01" },
   ],
   tableName: "orders",
   returnFields: "basic",

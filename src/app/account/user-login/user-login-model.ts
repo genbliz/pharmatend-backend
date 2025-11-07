@@ -17,5 +17,5 @@ UserLoginModel.init({
   },
   tableName: "users_logins",
   returnFields: "basic",
-  fieldAliases: [["userId", "targetId"]],
+  fieldAliases: [{ source: "userId", dest: "targetId" }],
 });

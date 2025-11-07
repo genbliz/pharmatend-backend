@@ -44,8 +44,8 @@ ProductModel.init({
     ],
   },
   fieldAliases: [
-    ["barcode", "sk01"],
-    ["category", "sk02"],
+    { source: "barcode", dest: "sk01" },
+    { source: "category", dest: "sk02" },
   ],
   tableName: "products",
   returnFields: "basic",

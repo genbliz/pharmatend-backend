@@ -19,7 +19,7 @@ SaleModel.init({
     //
     remark: JoiStringDefaultOrStrip(),
   },
-  fieldAliases: [["orderId", "targetId"]],
+  fieldAliases: [{ source: "orderId", dest: "targetId" }],
   tableName: "sales",
   returnFields: "basic",
 });

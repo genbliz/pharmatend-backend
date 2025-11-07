@@ -12,6 +12,7 @@ import {
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import stream from "node:stream";
+import consumers from "node:stream/consumers";
 import { GenericFriendlyError } from "@/utils/errors.js";
 
 export class AwsS3BaseService {
@@ -64,7 +65,7 @@ export class AwsS3BaseService {
     return urlFull;
   }
 
-  private async getObject(fileKeyPath: string) {
+  private async getObject({ fileKeyPath }: { fileKeyPath: string }) {
     try {
       const bucketName: string = this.getUploadBucketName();
       const command = new GetObjectCommand({
@@ -94,19 +95,6 @@ export class AwsS3BaseService {
       throw error;
     }
   }
-
-  // async getJsonObject__0000<T = Record<string, unknown> | Record<string, unknown>[]>({
-  //   fileKeyPath,
-  // }: {
-  //   fileKeyPath: string;
-  // }) {
-  //   const objectData = await this.getObject(fileKeyPath);
-  //   if (objectData && objectData instanceof stream.Readable) {
-  //     const dataStream = await getStream(objectData);
-  //     return JSON.parse(dataStream) as T;
-  //   }
-  //   return null;
-  // }
 
   async getJsonObject<T = Record<string, unknown> | Record<string, unknown>[]>({
     fileKeyPath,
