@@ -1,10 +1,10 @@
-import { UtilService } from "@/services/util-service";
-import { DateService } from "@/services/date-service";
-import { ISessionUser } from "../account/auth/auth-types";
-import { GenericFriendlyError } from "../utils/errors";
-import { StatusCode } from "../helper/status-code";
-import { GetFriendlyErrorMessage } from "../helper/response-model";
-import { envConfig } from "../config/env";
+import { UtilService } from "@/services/util-service.js";
+import { DateService } from "@/services/date-service.js";
+import { ISessionUser } from "../account/auth/auth-types.js";
+import { GenericFriendlyError } from "../utils/errors.js";
+import { StatusCode } from "../helper/status-code.js";
+import { GetFriendlyErrorMessage } from "../helper/response-model.js";
+import { envConfig } from "../config/env.js";
 
 export class BaseHelperUtils {
   validateRequiredString(keyValueValidates: { [key: string]: string | null | undefined }) {

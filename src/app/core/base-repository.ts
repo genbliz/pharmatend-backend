@@ -1,15 +1,15 @@
 import Joi from "joi";
-import { DefinedIndexes } from "./base-constants";
-import { RootRepository } from "./root-repository";
+import { DefinedIndexes } from "./base-constants.js";
+import { RootRepository } from "./root-repository.js";
 import type {
   IMocodyIndexDefinition,
   IMocodyQueryDefinition,
   IMocodyFieldCondition,
   IMocodyKeyConditionParams,
 } from "mocody";
-import { ICoreEntityBaseModel, IDataSortKey } from "./base-types";
-import { MyQueryBuilder } from "./base-query-builder";
-import { ISessionUser } from "../account/auth/auth-types";
+import { ICoreEntityBaseModel, IDataSortKey } from "./base-types.js";
+import { MyQueryBuilder } from "./base-query-builder.js";
+import { ISessionUser } from "../account/auth/auth-types.js";
 
 interface ICoreRepoOptions<T> {
   schemaSubDef: Joi.SchemaMap;

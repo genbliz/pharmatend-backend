@@ -4,9 +4,9 @@ import {
   JoiStringCustomId,
   JoiStripWhenNull,
   JoiStringPhoneNumber,
-} from "@/core/base-joi-helper";
-import { BaseTenantModelFunc } from "@/core/base-schema-model";
-import { IStaff } from "./staff-types";
+} from "@/core/base-joi-helper.js";
+import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
+import { IStaff } from "./staff-types.js";
 
 export class StaffModel extends BaseTenantModelFunc<IStaff>() {}
 

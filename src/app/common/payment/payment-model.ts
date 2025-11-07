@@ -1,7 +1,7 @@
 import Joi from "joi";
-import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper";
-import { BaseTenantModelFunc } from "@/core/base-schema-model";
-import { IPayment } from "./payment-types";
+import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper.js";
+import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
+import { IPayment } from "./payment-types.js";
 
 export class PaymentModel extends BaseTenantModelFunc<IPayment>() {}
 

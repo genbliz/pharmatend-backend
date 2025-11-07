@@ -1,5 +1,5 @@
-import { UtilService } from "@/services/util-service";
-import { envConfig, lambdaDefinedEnvConfig } from "@/config/env";
+import { UtilService } from "@/services/util-service.js";
+import { envConfig, lambdaDefinedEnvConfig } from "@/config/env.js";
 //
 export interface ISystemPreference {
   isS3FileStorageEnabled: boolean;

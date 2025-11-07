@@ -1,6 +1,6 @@
-import { UtilService } from "@/services/util-service";
+import { UtilService } from "@/services/util-service.js";
 import { IMocodyQueryDefinition, IMocodyKeyConditionParams } from "mocody";
-import { IManyQueryTypeAll } from "./base-query-type";
+import { IManyQueryTypeAll } from "./base-query-type.js";
 
 type IParams = {
   count: number | undefined;

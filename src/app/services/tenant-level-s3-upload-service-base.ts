@@ -1,11 +1,11 @@
 import express from "express";
-import { GenericFriendlyError } from "@/utils/errors";
-import { DocumentAssetUploadS3Service } from "@/services/document-asset-upload-s3-service";
-import { FormDataUploadRequestService } from "@/services/formdata-upload-request-service";
-import { FileOperationService } from "@/services/file-operation-service";
-import { S3UploadPathAllocator } from "@/services/s3-upload-path-allocator";
-import { UniqueIdGeneratorService } from "./unique-id-generator-service";
-import { ResponseMessage } from "../helper/response-message";
+import { GenericFriendlyError } from "@/utils/errors.js";
+import { DocumentAssetUploadS3Service } from "@/services/document-asset-upload-s3-service.js";
+import { FormDataUploadRequestService } from "@/services/formdata-upload-request-service.js";
+import { FileOperationService } from "@/services/file-operation-service.js";
+import { S3UploadPathAllocator } from "@/services/s3-upload-path-allocator.js";
+import { UniqueIdGeneratorService } from "./unique-id-generator-service.js";
+import { ResponseMessage } from "../helper/response-message.js";
 
 export class TenantLevelS3UploadServiceBase {
   private readonly s3Folder: string;

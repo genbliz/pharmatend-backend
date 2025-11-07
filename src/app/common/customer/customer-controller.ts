@@ -1,9 +1,9 @@
 import { Request, Response, Router } from "express";
-import { BaseController } from "@/core/base-controller";
-import { CustomerRepository } from "./customer-repository";
-import { ICustomer } from "./customer-types";
-import { CustomerModel } from "./customer-model";
-import { DateService } from "../../services/date-service";
+import { BaseController } from "@/core/base-controller.js";
+import { CustomerRepository } from "./customer-repository.js";
+import { ICustomer } from "./customer-types.js";
+import { CustomerModel } from "./customer-model.js";
+import { DateService } from "../../services/date-service.js";
 
 async function getById(req: Request, res: Response) {
   try {

@@ -1,7 +1,7 @@
 import Joi from "joi";
-import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper";
-import { BaseTenantModelFunc } from "@/core/base-schema-model";
-import { IOrder } from "./order-types";
+import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper.js";
+import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
+import { IOrder } from "./order-types.js";
 
 export class OrderModel extends BaseTenantModelFunc<IOrder>() {}
 

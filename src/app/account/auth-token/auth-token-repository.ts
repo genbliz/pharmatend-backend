@@ -1,9 +1,9 @@
-import { EncryptionService } from "@/services/encryption-service";
-import { UtilService } from "@/services/util-service";
-import { DateService } from "@/services/date-service";
-import { IAuthToken, AuthTokenCategoryEnum } from "./auth-token-types";
-import { AuthTokenModel } from "./auth-token-model";
-import { CoreTempRepository } from "@/core/core-temp-repository";
+import { EncryptionService } from "@/services/encryption-service.js";
+import { UtilService } from "@/services/util-service.js";
+import { DateService } from "@/services/date-service.js";
+import { IAuthToken, AuthTokenCategoryEnum } from "./auth-token-types.js";
+import { AuthTokenModel } from "./auth-token-model.js";
+import { CoreTempRepository } from "@/core/core-temp-repository.js";
 
 class AuthTokenRepositoryBase extends CoreTempRepository<IAuthToken> {
   constructor() {

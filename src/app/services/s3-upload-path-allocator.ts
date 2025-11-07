@@ -1,4 +1,4 @@
-import { envConfig } from "./../config/env";
+import { envConfig } from "./../config/env.js";
 
 class S3UploadPathAllocatorBase {
   getTenantFolderPath({ tenantId, folderName }: { tenantId: string; folderName: string }) {

@@ -12,7 +12,7 @@ import {
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import stream from "node:stream";
-import { GenericFriendlyError } from "../utils/errors";
+import { GenericFriendlyError } from "../utils/errors.js";
 
 export class AwsS3BaseService {
   private client: S3Client | undefined;

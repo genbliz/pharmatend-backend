@@ -1,12 +1,12 @@
-import { FileOperationService } from "./file-operation-service";
-import { HttpRequestBase } from "./http-request-base";
-import { UtilService } from "./util-service";
+import { FileOperationService } from "./file-operation-service.js";
+import { HttpRequestBase } from "./http-request-base.js";
+import { UtilService } from "./util-service.js";
 import os from "node:os";
 import path from "node:path";
 
 import { createHmac } from "crypto";
-import { envConfig } from "../config/env";
-import { EncryptionService } from "./encryption-service";
+import { envConfig } from "../config/env.js";
+import { EncryptionService } from "./encryption-service.js";
 
 interface IUserInfo {
   _id: `org.couchdb.user:${string}`;

@@ -1,4 +1,4 @@
-import { GenderEnum, ICoreEntityTenantModel } from "@/core/base-types";
+import { GenderEnum, ICoreEntityTenantModel } from "@/core/base-types.js";
 
 export interface IUser extends ICoreEntityTenantModel {
   firstName: string;

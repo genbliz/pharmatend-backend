@@ -1,7 +1,7 @@
 import dotenv from "dotenv";
 import fs from "node:fs";
 import { expand } from "dotenv-expand";
-import { ConfigService } from "./config-service";
+import { ConfigService } from "./config-service.js";
 const myEnv = dotenv.config();
 expand(myEnv);
 //

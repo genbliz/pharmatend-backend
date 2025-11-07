@@ -1,6 +1,6 @@
-import { JoiStringDefaultOrStrip, JoiStringPhoneNumber } from "@/core/base-joi-helper";
-import { BaseTenantModelFunc } from "@/core/base-schema-model";
-import { CustomerCategoryEnum, ICustomer } from "./customer-types";
+import { JoiStringDefaultOrStrip, JoiStringPhoneNumber } from "@/core/base-joi-helper.js";
+import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
+import { CustomerCategoryEnum, ICustomer } from "./customer-types.js";
 
 export class CustomerModel extends BaseTenantModelFunc<ICustomer>() {}
 

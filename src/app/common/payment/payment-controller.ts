@@ -1,9 +1,9 @@
 import { Request, Response, Router } from "express";
-import { BaseController } from "@/core/base-controller";
-import { PaymentRepository } from "./payment-repository";
-import { IPayment } from "./payment-types";
-import { PaymentModel } from "./payment-model";
-import { DateService } from "../../services/date-service";
+import { BaseController } from "@/core/base-controller.js";
+import { PaymentRepository } from "./payment-repository.js";
+import { IPayment } from "./payment-types.js";
+import { PaymentModel } from "./payment-model.js";
+import { DateService } from "../../services/date-service.js";
 
 async function getById(req: Request, res: Response) {
   try {

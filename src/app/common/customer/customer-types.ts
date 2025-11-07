@@ -1,4 +1,4 @@
-import { ICoreEntityTenantModel } from "@/core/base-types";
+import { ICoreEntityTenantModel } from "@/core/base-types.js";
 
 export const CustomerCategoryEnum = {
   BUSINESS: "BUSINESS",

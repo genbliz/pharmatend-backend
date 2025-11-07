@@ -1,7 +1,7 @@
-import { GenericFriendlyError } from "../utils/errors";
-import { LoggingService } from "./logging-service";
-import { UtilService } from "./util-service";
-import { HttpRequestBase } from "./http-request-base";
+import { GenericFriendlyError } from "../utils/errors.js";
+import { LoggingService } from "./logging-service.js";
+import { UtilService } from "./util-service.js";
+import { HttpRequestBase } from "./http-request-base.js";
 
 const performanceReportFinal: Record<string, number | undefined> = {};
 

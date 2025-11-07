@@ -1,9 +1,9 @@
 import { MocodyInitializerCouch, MocodyInitializerPouch } from "mocody";
-import { CommonConfig } from "../config/config-common";
-import { envConfig } from "../config/env";
-import { EncryptionService } from "../services/encryption-service";
-import { GenericFriendlyError } from "../utils/errors";
-import { DefinedIndexes } from "./base-constants";
+import { CommonConfig } from "../config/config-common.js";
+import { envConfig } from "../config/env.js";
+import { EncryptionService } from "../services/encryption-service.js";
+import { GenericFriendlyError } from "../utils/errors.js";
+import { DefinedIndexes } from "./base-constants.js";
 
 type IVal = {
   dataTypes: {

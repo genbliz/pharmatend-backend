@@ -1,9 +1,9 @@
-// import { DateService } from "./../services/date-service";
-// import { IProduct } from "./../common/product/product-types";
+// import { DateService } from "./../services/date-service.js";
+// import { IProduct } from "./../common/product/product-types.js";
 // import faker from "faker";
-// import { ProductRepository } from "@/common/product/product-repository";
-// import { ProductCategoryArray } from "@/common/product/product-model";
-// import { DefinedTenantIds } from "./constants";
+// import { ProductRepository } from "@/common/product/product-repository.js";
+// import { ProductCategoryArray } from "@/common/product/product-model.js";
+// import { DefinedTenantIds } from "./constants.js";
 
 // export async function seed_product() {
 //   try {

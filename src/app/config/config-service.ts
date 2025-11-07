@@ -1,5 +1,5 @@
 import os from "node:os";
-import { UtilService } from "../services/util-service";
+import { UtilService } from "../services/util-service.js";
 
 export const ConfigService = {
   ClientHeadersKeys: {

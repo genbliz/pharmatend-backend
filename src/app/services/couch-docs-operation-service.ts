@@ -1,8 +1,8 @@
-import { JsonWebTokenService } from "./jsonwebtoken-service";
-import { HttpRequestBase } from "./http-request-base";
-import { UtilService } from "./util-service";
-import { envConfig } from "../config/env";
-import { EncryptionService } from "./encryption-service";
+import { JsonWebTokenService } from "./jsonwebtoken-service.js";
+import { HttpRequestBase } from "./http-request-base.js";
+import { UtilService } from "./util-service.js";
+import { envConfig } from "../config/env.js";
+import { EncryptionService } from "./encryption-service.js";
 
 export class CouchDocsOperationServiceBase extends HttpRequestBase {
   // http://localhost:5984/_session

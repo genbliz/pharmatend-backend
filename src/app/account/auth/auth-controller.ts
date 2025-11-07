@@ -1,10 +1,10 @@
-import { AuthService } from "./auth-service";
+import { AuthService } from "./auth-service.js";
 import express, { Router } from "express";
-import { UserRepository } from "../user/user-repository";
-import { IAuthLoginDto } from "./auth-types";
-import { IRegisterUser } from "../user/user-types";
-import { DefinedUserPermission } from "../authorization/authorization-permission";
-import { BaseController } from "@/core/base-controller";
+import { UserRepository } from "../user/user-repository.js";
+import { IAuthLoginDto } from "./auth-types.js";
+import { IRegisterUser } from "../user/user-types.js";
+import { DefinedUserPermission } from "../authorization/authorization-permission.js";
+import { BaseController } from "@/core/base-controller.js";
 
 async function userLogin(req: express.Request, res: express.Response) {
   try {

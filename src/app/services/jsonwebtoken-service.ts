@@ -1,7 +1,7 @@
-import { GenericFriendlyError } from "./../utils/errors";
+import { GenericFriendlyError } from "./../utils/errors.js";
 import jwt from "jsonwebtoken";
-import { envConfig } from "../config/env";
-import { UtilService } from "./util-service";
+import { envConfig } from "../config/env.js";
+import { UtilService } from "./util-service.js";
 
 class JsonWebTokenServiceBase {
   //

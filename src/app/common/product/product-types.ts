@@ -1,4 +1,4 @@
-import { ICoreEntityTenantModel, ITextValue } from "@/core/base-types";
+import { ICoreEntityTenantModel, ITextValue } from "@/core/base-types.js";
 
 export const ProductCategoryEnum = {
   DRUG: "DRUG",

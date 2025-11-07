@@ -1,10 +1,10 @@
 import express from "express";
-import { AuthSessionHelperService } from "@/account/auth/auth-session-helper-service";
-import { IAuthUserResult } from "./auth-types";
-import { GenericFriendlyError } from "./../../utils/errors";
-import { ResponseModelResolve } from "../../helper/response-model";
-import { StatusCode } from "../../helper/status-code";
-import { JsonWebTokenService } from "../../services/jsonwebtoken-service";
+import { AuthSessionHelperService } from "@/account/auth/auth-session-helper-service.js";
+import { IAuthUserResult } from "./auth-types.js";
+import { GenericFriendlyError } from "./../../utils/errors.js";
+import { ResponseModelResolve } from "../../helper/response-model.js";
+import { StatusCode } from "../../helper/status-code.js";
+import { JsonWebTokenService } from "../../services/jsonwebtoken-service.js";
 
 async function verifyUserToken(token: string) {
   return await JsonWebTokenService.verifyToken<IAuthUserResult>(token);

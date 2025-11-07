@@ -1,8 +1,8 @@
-import { LoggingService } from "@/services/logging-service";
-import { isMessageInResponseMessageList } from "./response-message";
+import { LoggingService } from "@/services/logging-service.js";
+import { isMessageInResponseMessageList } from "./response-message.js";
 import express from "express";
-import { StatusCode } from "./status-code";
-import { GenericFriendlyError } from "@/utils/errors";
+import { StatusCode } from "./status-code.js";
+import { GenericFriendlyError } from "@/utils/errors.js";
 import { MocodyGenericError } from "mocody";
 
 interface ISuccessResponseModelResolve {

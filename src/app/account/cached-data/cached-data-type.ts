@@ -1,4 +1,4 @@
-import { ICoreEntityBaseModel } from "@/core/base-types";
+import { ICoreEntityBaseModel } from "@/core/base-types.js";
 
 export interface ICachedData extends ICoreEntityBaseModel {
   targetId: string;

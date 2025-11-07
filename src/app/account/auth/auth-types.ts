@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import { ISystemPreference } from "@/services/system-service";
-import { ITenantSetting } from "@/common/tenant/tenant-setting/tenant-setting-types";
-import { ITenant } from "../admin/admin-types";
-import { IUser } from "../user/user-types";
+import { ISystemPreference } from "@/services/system-service.js";
+import { ITenantSetting } from "@/common/tenant/tenant-setting/tenant-setting-types.js";
+import { ITenant } from "../admin/admin-types.js";
+import { IUser } from "../user/user-types.js";
 
 export interface ISessionUser {
   isAdmin?: boolean;

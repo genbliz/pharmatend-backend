@@ -1,10 +1,10 @@
-import { IUserChangeMyPasswordDto } from "./../auth/auth-types";
+import { IUserChangeMyPasswordDto } from "./../auth/auth-types.js";
 import express, { Router } from "express";
-import { UserRepository } from "./user-repository";
-import { IUser, getUserKindsArray, UserKindsEnum } from "./user-types";
-import { BaseController } from "@/core/base-controller";
-import { UserModel } from "./user-model";
-import { UtilService } from "../../services/util-service";
+import { UserRepository } from "./user-repository.js";
+import { IUser, getUserKindsArray, UserKindsEnum } from "./user-types.js";
+import { BaseController } from "@/core/base-controller.js";
+import { UserModel } from "./user-model.js";
+import { UtilService } from "../../services/util-service.js";
 
 interface IRequestParams {
   count?: number;

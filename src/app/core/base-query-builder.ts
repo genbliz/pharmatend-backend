@@ -1,4 +1,4 @@
-import { UtilService } from "@/services/util-service";
+import { UtilService } from "@/services/util-service.js";
 import { IMocodyQueryDefinition, IMocodyKeyConditionParams } from "mocody";
 
 type IParams = {

@@ -1,9 +1,9 @@
-import { DefinedUserPermission } from "@/account/authorization/authorization-permission";
+import { DefinedUserPermission } from "@/account/authorization/authorization-permission.js";
 import { Request, Response, Router } from "express";
-import { RoleClaimRepository } from "./role-claim-repository";
-import { IRoleClaim } from "./role-claim-type";
-import { BaseController } from "@/core/base-controller";
-import { getPreDefinedRoleClaim } from "./role-claim-defined";
+import { RoleClaimRepository } from "./role-claim-repository.js";
+import { IRoleClaim } from "./role-claim-type.js";
+import { BaseController } from "@/core/base-controller.js";
+import { getPreDefinedRoleClaim } from "./role-claim-defined.js";
 
 async function getAll(req: Request, res: Response) {
   try {

@@ -1,11 +1,11 @@
-import { LoggingService } from "../services/logging-service";
+import { LoggingService } from "../services/logging-service.js";
 
 import { Router, Request, Response } from "express";
-import { StaffRepository } from "../common/staff/staff-repository";
-import { StatusCode } from "../helper/status-code";
-import { BaseController } from "../core/base-controller";
-import { envConfig } from "../config/env";
-import { ICountryInfo } from "../core/base-types";
+import { StaffRepository } from "../common/staff/staff-repository.js";
+import { StatusCode } from "../helper/status-code.js";
+import { BaseController } from "../core/base-controller.js";
+import { envConfig } from "../config/env.js";
+import { ICountryInfo } from "../core/base-types.js";
 import countriesJson from "../../assets/countries.json";
 
 const router = Router();

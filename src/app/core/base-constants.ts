@@ -1,7 +1,7 @@
-import { envConfig } from "@/config/env";
-import { GenericFriendlyError } from "./../utils/errors";
+import { envConfig } from "@/config/env.js";
+import { GenericFriendlyError } from "./../utils/errors.js";
 import { IMocodyIndexDefinition } from "mocody";
-import { ICoreEntityTenantModel, ICoreEntityBaseModel } from "./base-types";
+import { ICoreEntityTenantModel, ICoreEntityBaseModel } from "./base-types.js";
 
 interface IDefinedIndexes {
   featureEntity_createdAtDate: IMocodyIndexDefinition<ICoreEntityBaseModel>;
@@ -14,7 +14,7 @@ interface IDefinedIndexes {
   featureEntityTenantId_createdAtDate: IMocodyIndexDefinition<ICoreEntityTenantModel>;
   featureEntityTenantId_recordDate: IMocodyIndexDefinition<ICoreEntityTenantModel>;
   featureEntityTenantId_numberCode: IMocodyIndexDefinition<ICoreEntityTenantModel>;
-  featureEntityTenantId_stringCode: IMocodyIndexDefinition<ICoreEntityTenantModel>;
+  featureEntityTenantId_sk01: IMocodyIndexDefinition<ICoreEntityTenantModel>;
   //
   customerId_featureEntity: IMocodyIndexDefinition<ICoreEntityTenantModel>;
   customerId_createdAtDate: IMocodyIndexDefinition<ICoreEntityTenantModel>;
@@ -67,14 +67,14 @@ export const DefinedIndexes: IDefinedIndexes = {
     partitionKeyFieldName: "featureEntityTenantId",
     sortKeyFieldName: "numberCode",
   },
-  featureEntityTenantId_stringCode: {
+  featureEntityTenantId_sk01: {
     dataTypes: {
       partitionKeyDataType: "S",
       sortKeyDataType: "N",
     },
     indexName: "featureEntityTenantId_stringCode_index",
     partitionKeyFieldName: "featureEntityTenantId",
-    sortKeyFieldName: "stringCode",
+    sortKeyFieldName: "sk01",
   },
   targetId_featureEntity: {
     dataTypes: {

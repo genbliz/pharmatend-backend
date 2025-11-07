@@ -1,6 +1,6 @@
-import { IPermissionItem } from "./../authorization/authorization-permission";
-import { DefinedUserPermission } from "../authorization/authorization-permission";
-import { IRoleClaim } from "./role-claim-type";
+import { IPermissionItem } from "./../authorization/authorization-permission.js";
+import { DefinedUserPermission } from "../authorization/authorization-permission.js";
+import { IRoleClaim } from "./role-claim-type.js";
 
 type IDefined = Partial<Omit<IRoleClaim, "claims"> & { claims: IPermissionItem[] }>;
 

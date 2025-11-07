@@ -1,7 +1,7 @@
 import Joi from "joi";
-import { IRoleClaim } from "./role-claim-type";
-import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper";
-import { BaseTenantModelFunc } from "@/core/base-schema-model";
+import { IRoleClaim } from "./role-claim-type.js";
+import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper.js";
+import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 
 export class RoleClaimModel extends BaseTenantModelFunc<IRoleClaim>() {}
 

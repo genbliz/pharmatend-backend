@@ -1,20 +1,20 @@
-import { LoggingService } from "@/services/logging-service";
-import { envConfig } from "@/config/env";
-import { UtilService } from "@/services/util-service";
-import { AdminService } from "../admin/admin-service";
-import { UserLoginRepository } from "@/account/user-login/user-login-repository";
-import { RoleClaimRepository } from "@/account/role-claim/role-claim-repository";
-import { UserRepository } from "@/account/user/user-repository";
-import { IAuthLoginDto, IAuthUserResult, IAuthLoginResult, IAuthLoginBaseDto, IAuthUserInfo } from "./auth-types";
-import { JsonWebTokenService } from "@/services/jsonwebtoken-service";
-import { TenantSettingRepository } from "@/common/tenant/tenant-setting/tenant-setting-repository";
-import { IUser } from "@/account/user/user-types";
-import { ITenant } from "../admin/admin-types";
-import { getAllAuthorizationPermissionParameters } from "../authorization/authorization-permission";
-import { DateService } from "@/services/date-service";
-import { SystemService } from "@/services/system-service";
-import { BaseHelperUtils } from "@/core/base-error-helper-utils";
-import { ResponseMessage } from "../../helper/response-message";
+import { LoggingService } from "@/services/logging-service.js";
+import { envConfig } from "@/config/env.js";
+import { UtilService } from "@/services/util-service.js";
+import { AdminService } from "../admin/admin-service.js";
+import { UserLoginRepository } from "@/account/user-login/user-login-repository.js";
+import { RoleClaimRepository } from "@/account/role-claim/role-claim-repository.js";
+import { UserRepository } from "@/account/user/user-repository.js";
+import { IAuthLoginDto, IAuthUserResult, IAuthLoginResult, IAuthLoginBaseDto, IAuthUserInfo } from "./auth-types.js";
+import { JsonWebTokenService } from "@/services/jsonwebtoken-service.js";
+import { TenantSettingRepository } from "@/common/tenant/tenant-setting/tenant-setting-repository.js";
+import { IUser } from "@/account/user/user-types.js";
+import { ITenant } from "../admin/admin-types.js";
+import { getAllAuthorizationPermissionParameters } from "../authorization/authorization-permission.js";
+import { DateService } from "@/services/date-service.js";
+import { SystemService } from "@/services/system-service.js";
+import { BaseHelperUtils } from "@/core/base-error-helper-utils.js";
+import { ResponseMessage } from "../../helper/response-message.js";
 
 class AuthServiceBase extends BaseHelperUtils {
   async loginUserByParams({

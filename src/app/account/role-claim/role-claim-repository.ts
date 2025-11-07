@@ -1,7 +1,7 @@
-import { IRoleClaim } from "./role-claim-type";
-import { ISessionUser } from "../auth/auth-types";
-import { RoleClaimModel } from "./role-claim-model";
-import { CoreTenantRepository } from "@/core/core-tenant-repository";
+import { IRoleClaim } from "./role-claim-type.js";
+import { ISessionUser } from "../auth/auth-types.js";
+import { RoleClaimModel } from "./role-claim-model.js";
+import { CoreTenantRepository } from "@/core/core-tenant-repository.js";
 
 class RoleClaimRepositoryBase extends CoreTenantRepository<IRoleClaim> {
   constructor() {

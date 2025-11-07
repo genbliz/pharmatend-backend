@@ -1,5 +1,5 @@
-// import { seed_product } from "./product";
-// import { seed_sale } from "./sale";
+// import { seed_product } from "./product.js";
+// import { seed_sale } from "./sale.js";
 
 // async function seedAll() {
 //   await seed_product();

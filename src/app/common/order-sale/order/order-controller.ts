@@ -1,10 +1,10 @@
 import { Request, Response, Router } from "express";
-import { BaseController } from "@/core/base-controller";
-import { OrderRepository } from "./order-repository";
-import { IOrder, IOrderExtra } from "./order-types";
-import { OrderModel } from "./order-model";
-import { DateService } from "../../../services/date-service";
-import { SaleRepository } from "../sale/sale-repository";
+import { BaseController } from "@/core/base-controller.js";
+import { OrderRepository } from "./order-repository.js";
+import { IOrder, IOrderExtra } from "./order-types.js";
+import { OrderModel } from "./order-model.js";
+import { DateService } from "../../../services/date-service.js";
+import { SaleRepository } from "../sale/sale-repository.js";
 
 async function getById(req: Request, res: Response) {
   try {

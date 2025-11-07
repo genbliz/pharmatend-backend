@@ -1,4 +1,4 @@
-import { ICoreEntityTargetModel } from "@/core/base-types";
+import { ICoreEntityTargetModel } from "@/core/base-types.js";
 
 export const UserLoginStatusEnum = {
   FAILED: "FAILED",

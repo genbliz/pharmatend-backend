@@ -1,16 +1,16 @@
 import Joi from "joi";
-import { UtilService } from "@/services/util-service";
+import { UtilService } from "@/services/util-service.js";
 import {
   PouchDataOperation,
   type IMocodyIndexDefinition,
   type IMocodyFieldCondition,
   CouchDataOperation,
 } from "mocody";
-import { BaseHelperUtils } from "./base-error-helper-utils";
-import { BaseConnections } from "./base-connections";
-import { CreateFriendlyError } from "../helper/response-model";
-import { UniqueIdGeneratorService } from "../services/unique-id-generator-service";
-import { ICoreEntityBaseModel } from "./base-types";
+import { BaseHelperUtils } from "./base-error-helper-utils.js";
+import { BaseConnections } from "./base-connections.js";
+import { CreateFriendlyError } from "../helper/response-model.js";
+import { UniqueIdGeneratorService } from "../services/unique-id-generator-service.js";
+import { ICoreEntityBaseModel } from "./base-types.js";
 
 interface IRootRepositoryOptions<T> {
   schemaSubDef: Joi.SchemaMap;

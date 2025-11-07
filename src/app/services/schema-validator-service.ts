@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { GenericFriendlyError } from "../utils/errors";
+import { GenericFriendlyError } from "../utils/errors.js";
 
 function getJoiValidationErrors(err: Joi.ValidationError): string | null {
   if (err?.details?.length) {

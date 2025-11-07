@@ -1,7 +1,7 @@
 import Joi from "joi";
-import { IUserLogin, UserLoginStatusEnum } from "./user-login-types";
-import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper";
-import { BaseTenantModelFunc } from "@/core/base-schema-model";
+import { IUserLogin, UserLoginStatusEnum } from "./user-login-types.js";
+import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper.js";
+import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 
 const UserLoginStatusArray = Object.values(UserLoginStatusEnum);
 

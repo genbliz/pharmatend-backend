@@ -1,12 +1,12 @@
-import { LoggingService } from "@/services/logging-service";
-import { RemoteParentService } from "@/remote/parent/remote-parent-service";
-import { CachedDataRepository } from "../cached-data/cached-data-repository";
-import { ITenant, ISuperAdminRemoteLoginResult, ISuperAdministrator } from "./admin-types";
-import { ISessionUser } from "../auth/auth-types";
-import { DateService } from "@/services/date-service";
-import { BaseHelperUtils } from "@/core/base-error-helper-utils";
-import { CommonConfig } from "../../config/config-common";
-import { CreateFriendlyError } from "../../helper/response-model";
+import { LoggingService } from "@/services/logging-service.js";
+import { RemoteParentService } from "@/remote/parent/remote-parent-service.js";
+import { CachedDataRepository } from "../cached-data/cached-data-repository.js";
+import { ITenant, ISuperAdminRemoteLoginResult, ISuperAdministrator } from "./admin-types.js";
+import { ISessionUser } from "../auth/auth-types.js";
+import { DateService } from "@/services/date-service.js";
+import { BaseHelperUtils } from "@/core/base-error-helper-utils.js";
+import { CommonConfig } from "../../config/config-common.js";
+import { CreateFriendlyError } from "../../helper/response-model.js";
 
 class AdminServiceBase extends BaseHelperUtils {
   private readonly cacheCategoryTenant = "3b9b793dce41b165fe0a05196b09cdd5c";

@@ -1,5 +1,5 @@
 import bunyan from "bunyan";
-import { envConfig } from "@/config/env";
+import { envConfig } from "@/config/env.js";
 
 const streams: bunyan.Stream[] = [];
 const name = `HOSPIMAN-BACKEND-V2-${envConfig.NODE_ENV || ""}`.toUpperCase();

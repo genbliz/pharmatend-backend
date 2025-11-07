@@ -1,18 +1,18 @@
 import lodash from "lodash";
 import Joi from "joi";
 import { Response, Request } from "express";
-import { BaseHelperUtils } from "./base-error-helper-utils";
-import { AuthSessionHelperService } from "@/account/auth/auth-session-helper-service";
-import { DefinedUserPermission, IPermissionItem } from "@/account/authorization/authorization-permission";
-import { ICoreRequestParams, IDataSortKey } from "./base-types";
-import { DateService } from "@/services/date-service";
-import { SchemaValidatorService } from "../services/schema-validator-service";
-import { LoggingService } from "../services/logging-service";
-import { GenericFriendlyError } from "../utils/errors";
-import { ISessionUser } from "../account/auth/auth-types";
-import { StatusCode } from "../helper/status-code";
-import { ResponseMessage } from "../helper/response-message";
-import { ResponseModelResolve } from "../helper/response-model";
+import { BaseHelperUtils } from "./base-error-helper-utils.js";
+import { AuthSessionHelperService } from "@/account/auth/auth-session-helper-service.js";
+import { DefinedUserPermission, IPermissionItem } from "@/account/authorization/authorization-permission.js";
+import { ICoreRequestParams, IDataSortKey } from "./base-types.js";
+import { DateService } from "@/services/date-service.js";
+import { SchemaValidatorService } from "../services/schema-validator-service.js";
+import { LoggingService } from "../services/logging-service.js";
+import { GenericFriendlyError } from "../utils/errors.js";
+import { ISessionUser } from "../account/auth/auth-types.js";
+import { StatusCode } from "../helper/status-code.js";
+import { ResponseMessage } from "../helper/response-message.js";
+import { ResponseModelResolve } from "../helper/response-model.js";
 
 class BaseControllerBase extends BaseHelperUtils {
   readonly DefinedRequiredPermission = { ...DefinedUserPermission } as const;

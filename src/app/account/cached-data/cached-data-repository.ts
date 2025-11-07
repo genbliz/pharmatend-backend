@@ -1,9 +1,9 @@
-import { LoggingService } from "@/services/logging-service";
-import { UtilService } from "@/services/util-service";
-import { DateService } from "@/services/date-service";
-import { ICachedData } from "./cached-data-type";
-import { CoreTempRepository } from "@/core/core-temp-repository";
-import { CacheDataModel } from "./cached-data-model";
+import { LoggingService } from "@/services/logging-service.js";
+import { UtilService } from "@/services/util-service.js";
+import { DateService } from "@/services/date-service.js";
+import { ICachedData } from "./cached-data-type.js";
+import { CoreTempRepository } from "@/core/core-temp-repository.js";
+import { CacheDataModel } from "./cached-data-model.js";
 
 class CachedDataRepositoryBase extends CoreTempRepository<ICachedData> {
   constructor() {

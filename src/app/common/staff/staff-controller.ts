@@ -1,9 +1,9 @@
 import { Request, Response, Router } from "express";
-import { BaseController } from "@/core/base-controller";
-import { StaffRepository } from "./staff-repository";
-import { IStaff } from "./staff-types";
-import { StaffModel } from "./staff-model";
-import { DateService } from "../../services/date-service";
+import { BaseController } from "@/core/base-controller.js";
+import { StaffRepository } from "./staff-repository.js";
+import { IStaff } from "./staff-types.js";
+import { StaffModel } from "./staff-model.js";
+import { DateService } from "../../services/date-service.js";
 
 async function getById(req: Request, res: Response) {
   try {

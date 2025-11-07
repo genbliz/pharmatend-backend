@@ -1,10 +1,10 @@
 import express from "express";
-import { ConfigService } from "@/config/config-service";
-import { IAuthUserResult, ISessionUser } from "@/account/auth/auth-types";
-import { CommonConfig } from "@/config/config-common";
-import { CreateFriendlyError } from "../../helper/response-model";
-import { ResponseMessage } from "../../helper/response-message";
-import { JsonWebTokenService } from "../../services/jsonwebtoken-service";
+import { ConfigService } from "@/config/config-service.js";
+import { IAuthUserResult, ISessionUser } from "@/account/auth/auth-types.js";
+import { CommonConfig } from "@/config/config-common.js";
+import { CreateFriendlyError } from "../../helper/response-model.js";
+import { ResponseMessage } from "../../helper/response-message.js";
+import { JsonWebTokenService } from "../../services/jsonwebtoken-service.js";
 
 const AUTH_TOKEN: string = "Authorization";
 const SESSION_USER_VALUE_KEY: string = "current_session_user_2020_08_15";

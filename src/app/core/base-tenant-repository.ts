@@ -1,5 +1,5 @@
-import { UtilService } from "@/services/util-service";
-import { ISessionUser } from "@/account/auth/auth-types";
+import { UtilService } from "@/services/util-service.js";
+import { ISessionUser } from "@/account/auth/auth-types.js";
 import type {
   IMocodyFieldCondition,
   IMocodyIndexDefinition,
@@ -7,10 +7,10 @@ import type {
   IMocodyQueryDefinition,
 } from "mocody";
 import Joi from "joi";
-import { DefinedIndexes } from "./base-constants";
-import { MyQueryBuilder } from "./base-query-builder";
-import { BaseRepository } from "./base-repository";
-import type { ICoreEntityTenantModel, IDataSortKey } from "./base-types";
+import { DefinedIndexes } from "./base-constants.js";
+import { MyQueryBuilder } from "./base-query-builder.js";
+import { BaseRepository } from "./base-repository.js";
+import type { ICoreEntityTenantModel, IDataSortKey } from "./base-types.js";
 import lodash from "lodash";
 
 interface ICoreRepoOptions<T> {
@@ -47,7 +47,7 @@ export abstract class BaseTenantRepository<T extends ICoreEntityTenantModel> ext
         DefinedIndexes.featureEntityTenantId_createdAtDate,
         DefinedIndexes.featureEntityTenantId_recordDate,
         DefinedIndexes.featureEntityTenantId_numberCode,
-        DefinedIndexes.featureEntityTenantId_stringCode,
+        DefinedIndexes.featureEntityTenantId_sk01,
       ],
     });
   }
@@ -57,7 +57,7 @@ export abstract class BaseTenantRepository<T extends ICoreEntityTenantModel> ext
       featureEntityTenantId_createdAtDate: DefinedIndexes.featureEntityTenantId_createdAtDate,
       featureEntityTenantId_recordDate: DefinedIndexes.featureEntityTenantId_recordDate,
       featureEntityTenantId_numberCode: DefinedIndexes.featureEntityTenantId_numberCode,
-      featureEntityTenantId_stringCode: DefinedIndexes.featureEntityTenantId_stringCode,
+      featureEntityTenantId_stringCode: DefinedIndexes.featureEntityTenantId_sk01,
     } as const;
   }
 
