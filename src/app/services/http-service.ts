@@ -1,4 +1,3 @@
-// import nodefetch from "node-fetch";
 import { GenericFriendlyError } from "../utils/errors";
 import { LoggingService } from "./logging-service";
 import { UtilService } from "./util-service";

@@ -1,5 +1,4 @@
 import { URLSearchParams, URL } from "node:url";
-import fetch from "node-fetch";
 
 type IParams = Record<string, string | boolean | undefined | null> | undefined | null;
 

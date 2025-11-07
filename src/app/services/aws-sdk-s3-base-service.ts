@@ -11,7 +11,6 @@ import {
   HeadObjectCommandInput,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import getStream from "get-stream";
 import stream from "node:stream";
 import { GenericFriendlyError } from "../utils/errors";
 
@@ -96,11 +95,29 @@ export class AwsS3BaseService {
     }
   }
 
-  async getJsonObject<T = Record<string, unknown> | Record<string, unknown>[]>(fileKeyPath: string) {
-    const objectData = await this.getObject(fileKeyPath);
+  // async getJsonObject__0000<T = Record<string, unknown> | Record<string, unknown>[]>({
+  //   fileKeyPath,
+  // }: {
+  //   fileKeyPath: string;
+  // }) {
+  //   const objectData = await this.getObject(fileKeyPath);
+  //   if (objectData && objectData instanceof stream.Readable) {
+  //     const dataStream = await getStream(objectData);
+  //     return JSON.parse(dataStream) as T;
+  //   }
+  //   return null;
+  // }
+
+  async getJsonObject<T = Record<string, unknown> | Record<string, unknown>[]>({
+    fileKeyPath,
+  }: {
+    fileKeyPath: string;
+  }) {
+    const filePath01 = fileKeyPath.endsWith(".json") ? fileKeyPath : `${fileKeyPath}.json`;
+    const objectData = await this.getObject({ fileKeyPath: filePath01 });
     if (objectData && objectData instanceof stream.Readable) {
-      const dataStream = await getStream(objectData);
-      return JSON.parse(dataStream) as T;
+      const dataStream = await consumers.json(objectData);
+      return dataStream as T;
     }
     return null;
   }

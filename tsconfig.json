@@ -1,17 +1,18 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "module": "commonjs",
+    "module": "nodenext",
+    "moduleResolution": "node16",
+    "lib": ["dom", "esnext"],
     "declaration": false,
     "noImplicitAny": false,
     "removeComments": true,
-    "moduleResolution": "node",
     "sourceMap": true,
     "importHelpers": false,
-    "lib": ["dom", "esnext"],
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
+    "erasableSyntaxOnly": true,
     "noUnusedLocals": true,
     "resolveJsonModule": true,
     "alwaysStrict": true,
@@ -19,9 +20,10 @@
     "strictPropertyInitialization": true,
     "useDefineForClassFields": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": false,
+    "emitDecoratorMetadata": true,
     "exactOptionalPropertyTypes": false,
     "useUnknownInCatchVariables": false,
+    "verbatimModuleSyntax": false,
     "noImplicitThis": true,
     "strict": true,
     "skipLibCheck": true,
@@ -29,9 +31,22 @@
     "outDir": "./build-dev",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/app/*"]
+      "@/*": ["./src/app/*"],
+      "#cdk/*": ["./cdk/*"],
+      "#func/*": ["./src/func/*"]
     }
   },
-  "include": ["./src/**/*", "declarations.d.ts"],
-  "exclude": ["node_modules", "./src/**/*.test.ts", "./src/**/*.spec.ts"]
+  "include": ["./src/**/*", "./cdk/**/*"],
+  "exclude": [
+    "node_modules",
+    "build-dev",
+    "build",
+    "dist-func",
+    "dist",
+    ".cache",
+    "dumps",
+    "cdk.out",
+    "./src/**/*.test.ts",
+    "./src/**/*.spec.ts"
+  ]
 }
