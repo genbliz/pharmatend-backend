@@ -1,7 +1,7 @@
 import { LoggingService } from "@/services/logging-service.js";
-import { isMessageInResponseMessageList } from "./response-message.js";
+import { isMessageInResponseMessageList } from "@/helper/response-message.js";
 import express from "express";
-import { StatusCode } from "./status-code.js";
+import { StatusCode } from "@/helper/status-code.js";
 import { GenericFriendlyError } from "@/utils/errors.js";
 import { MocodyGenericError } from "mocody";
 

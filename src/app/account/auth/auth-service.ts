@@ -1,20 +1,20 @@
 import { LoggingService } from "@/services/logging-service.js";
 import { envConfig } from "@/config/env.js";
 import { UtilService } from "@/services/util-service.js";
-import { AdminService } from "../admin/admin-service.js";
+import { AdminService } from "@/account/admin/admin-service.js";
 import { UserLoginRepository } from "@/account/user-login/user-login-repository.js";
 import { RoleClaimRepository } from "@/account/role-claim/role-claim-repository.js";
 import { UserRepository } from "@/account/user/user-repository.js";
-import { IAuthLoginDto, IAuthUserResult, IAuthLoginResult, IAuthLoginBaseDto, IAuthUserInfo } from "./auth-types.js";
+import { IAuthLoginDto, IAuthUserResult, IAuthLoginResult, IAuthLoginBaseDto, IAuthUserInfo } from "@/account/auth/auth-types.js";
 import { JsonWebTokenService } from "@/services/jsonwebtoken-service.js";
 import { TenantSettingRepository } from "@/common/tenant/tenant-setting/tenant-setting-repository.js";
 import { IUser } from "@/account/user/user-types.js";
-import { ITenant } from "../admin/admin-types.js";
-import { getAllAuthorizationPermissionParameters } from "../authorization/authorization-permission.js";
+import { ITenant } from "@/account/admin/admin-types.js";
+import { getAllAuthorizationPermissionParameters } from "@/account/authorization/authorization-permission.js";
 import { DateService } from "@/services/date-service.js";
 import { SystemService } from "@/services/system-service.js";
 import { BaseErrorHelperUtils } from "@/core/base-error-helper-utils.js";
-import { ResponseMessage } from "../../helper/response-message.js";
+import { ResponseMessage } from "@/helper/response-message.js";
 
 class AuthServiceBase extends BaseErrorHelperUtils {
   async loginUserByParams({

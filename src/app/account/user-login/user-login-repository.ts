@@ -1,9 +1,9 @@
-import { IUserLogin, UserLoginStatusEnum } from "./user-login-types.js";
+import { IUserLogin, UserLoginStatusEnum } from "@/account/user-login/user-login-types.js";
 import { DateService } from "@/services/date-service.js";
-import { UserLoginModel } from "./user-login-model.js";
+import { UserLoginModel } from "@/account/user-login/user-login-model.js";
 import { CoreTenantTargetTempRepository } from "@/core/core-tenant-target-temp-repository.js";
-import { ISessionUser } from "../auth/auth-types.js";
-import { LoggingService } from "../../services/logging-service.js";
+import { ISessionUser } from "@/account/auth/auth-types.js";
+import { LoggingService } from "@/services/logging-service.js";
 
 class UserLoginRepositoryBase extends CoreTenantTargetTempRepository<IUserLogin> {
   constructor() {

@@ -2,8 +2,8 @@ import busboy from "busboy";
 import fs from "node:fs";
 import path from "node:path";
 import { Request } from "express";
-import { UtilService } from "./util-service.js";
-import { FileOperationService } from "./file-operation-service.js";
+import { UtilService } from "@/services/util-service.js";
+import { FileOperationService } from "@/services/file-operation-service.js";
 
 interface IUploadBaseResult {
   originalFileName: string;

@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { isValidPhoneNumber, findNumbers } from "libphonenumber-js";
 import { UtilService } from "@/services/util-service.js";
-import { DateService } from "../services/date-service.js";
+import { DateService } from "@/services/date-service.js";
 
 export type ISchemaMap = Joi.SchemaMap;
 

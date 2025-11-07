@@ -1,7 +1,7 @@
 import { CoreTenantRepository } from "@/core/core-tenant-repository.js";
 import { ISessionUser } from "@/account/auth/auth-types.js";
-import { ISale } from "./sale-types.js";
-import { SaleModel } from "./sale-model.js";
+import { ISale } from "@/common/order-sale/sale/sale-types.js";
+import { SaleModel } from "@/common/order-sale/sale/sale-model.js";
 
 class SaleRepositoryBase extends CoreTenantRepository<ISale> {
   constructor() {

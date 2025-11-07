@@ -1,8 +1,8 @@
 import { CoreTenantRepository } from "@/core/core-tenant-repository.js";
 import { ISessionUser } from "@/account/auth/auth-types.js";
-import { IStaff } from "./staff-types.js";
-import { StaffModel } from "./staff-model.js";
-import { LoggingService } from "../../services/logging-service.js";
+import { IStaff } from "@/common/staff/staff-types.js";
+import { StaffModel } from "@/common/staff/staff-model.js";
+import { LoggingService } from "@/services/logging-service.js";
 
 class StaffRepositoryBase extends CoreTenantRepository<IStaff> {
   constructor() {

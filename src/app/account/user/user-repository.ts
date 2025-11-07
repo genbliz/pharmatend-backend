@@ -1,12 +1,12 @@
-import { AdminService } from "./../admin/admin-service.js";
+import { AdminService } from "@/account/admin/admin-service.js";
 import { UtilService } from "@/services/util-service.js";
-import { IUser, getUserKindsArray, UserKindsEnum, IRegisterUser } from "./user-types.js";
+import { IUser, getUserKindsArray, UserKindsEnum, IRegisterUser } from "@/account/user/user-types.js";
 import { BcryptService } from "@/services/bcrypt-service.js";
-import { ISessionUser } from "../auth/auth-types.js";
+import { ISessionUser } from "@/account/auth/auth-types.js";
 import { CoreTenantRepository } from "@/core/core-tenant-repository.js";
-import { UserModel } from "./user-model.js";
+import { UserModel } from "@/account/user/user-model.js";
 import { ITextValue } from "@/core/base-types.js";
-import { ResponseMessage } from "../../helper/response-message.js";
+import { ResponseMessage } from "@/helper/response-message.js";
 
 class UserRepositoryBase extends CoreTenantRepository<IUser> {
   constructor() {

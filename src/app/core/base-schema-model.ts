@@ -7,9 +7,9 @@ import type {
   IBaseSchemaDefinitionOther,
   ICoreEntityTargetModel,
   IBaseSchemaDefinitionTenantTarget,
-} from "./base-types.js";
+} from "@/core/base-types.js";
 
-import { JoiDateISOValidation, JoiDateFormat_YYYY_MM_DD, JoiStringCustomId, JoiStripWhenNull } from "./base-joi-helper.js";
+import { JoiDateISOValidation, JoiDateFormat_YYYY_MM_DD, JoiStringCustomId, JoiStripWhenNull } from "@/core/base-joi-helper.js";
 
 type IField<T> = { [P in keyof T]?: "" | 1 } | (keyof T)[];
 

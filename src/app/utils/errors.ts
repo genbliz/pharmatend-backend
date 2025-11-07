@@ -1,4 +1,4 @@
-import { StatusCode } from "../helper/status-code.js";
+import { StatusCode } from "@/helper/status-code.js";
 
 type IGenericResponseErrorParams = {
   error: string | Error;

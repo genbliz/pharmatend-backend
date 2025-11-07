@@ -1,8 +1,8 @@
 import { ISessionUser } from "@/account/auth/auth-types.js";
-import { IOrder, IOrderExtra } from "./order-types.js";
-import { OrderModel } from "./order-model.js";
-import { UtilService } from "../../../services/util-service.js";
-import { DateService } from "../../../services/date-service.js";
+import { IOrder, IOrderExtra } from "@/common/order-sale/order/order-types.js";
+import { OrderModel } from "@/common/order-sale/order/order-model.js";
+import { UtilService } from "@/services/util-service.js";
+import { DateService } from "@/services/date-service.js";
 import { CoreTenantTargetRepository } from "@/core/core-tenant-target-repository.js";
 
 class OrderRepositoryBase extends CoreTenantTargetRepository<IOrder> {

@@ -1,8 +1,8 @@
-// import { DateService } from "../services/date-service.js";
+// import { DateService } from "@/services/date-service.js";
 // import faker from "faker";
 // import { ISale } from "@/common/sale/sale-types.js";
 // import { SaleRepository } from "@/common/sale/sale-repository.js";
-// import { DefinedTenantIds } from "./constants.js";
+// import { DefinedTenantIds } from "@/seed/constants.js";
 
 // export async function seed_sale() {
 //   try {

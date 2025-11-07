@@ -1,16 +1,16 @@
 import os from "os";
 import { UtilService } from "@/services/util-service.js";
-import { GenericFriendlyError } from "../../utils/errors.js";
+import { GenericFriendlyError } from "@/utils/errors.js";
 import { LoggingService } from "@/services/logging-service.js";
 import { HttpService } from "@/services/http-service.js";
-import { ConfigService } from "../../config/config-service.js";
-import { ISessionUser } from "../../account/auth/auth-types.js";
+import { ConfigService } from "@/config/config-service.js";
+import { ISessionUser } from "@/account/auth/auth-types.js";
 import { envConfig } from "@/config/env.js";
 import { ISuperAdminRemoteLoginResult } from "@/account/admin/admin-types.js";
-import { IRemoteParams, ISmsSenderToRemote, IRemoteResult, ISmsSendExchangeResult } from "../remote-type.js";
-import { CommonConfig } from "../../config/config-common.js";
-import { CreateFriendlyError } from "../../helper/response-model.js";
-import { ResponseMessage } from "../../helper/response-message.js";
+import { IRemoteParams, ISmsSenderToRemote, IRemoteResult, ISmsSendExchangeResult } from "@/remote/remote-type.js";
+import { CommonConfig } from "@/config/config-common.js";
+import { CreateFriendlyError } from "@/helper/response-model.js";
+import { ResponseMessage } from "@/helper/response-message.js";
 
 class RemoteParentHttpServiceBase {
   private getApplicationHeaders(sessionUser?: ISessionUser) {

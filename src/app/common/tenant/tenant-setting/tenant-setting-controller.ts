@@ -1,8 +1,8 @@
 import { BaseController } from "@/core/base-controller.js";
 import { Request, Response, Router } from "express";
-import { TenantAssetS3UploadService } from "../tenant-asset-upload-service.js";
-import { ITenantSetting } from "./tenant-setting-types.js";
-import { TenantSettingRepository } from "./tenant-setting-repository.js";
+import { TenantAssetS3UploadService } from "@/common/tenant/tenant-asset-upload-service.js";
+import { ITenantSetting } from "@/common/tenant/tenant-setting/tenant-setting-types.js";
+import { TenantSettingRepository } from "@/common/tenant/tenant-setting/tenant-setting-repository.js";
 
 async function getById(req: Request, res: Response) {
   try {

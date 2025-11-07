@@ -1,8 +1,8 @@
 import { CoreTenantRepository } from "@/core/core-tenant-repository.js";
 import { ISessionUser } from "@/account/auth/auth-types.js";
-import { IProduct } from "./product-types.js";
-import { ProductModel } from "./product-model.js";
-import { UtilService } from "../../services/util-service.js";
+import { IProduct } from "@/common/product/product-types.js";
+import { ProductModel } from "@/common/product/product-model.js";
+import { UtilService } from "@/services/util-service.js";
 
 class ProductRepositoryBase extends CoreTenantRepository<IProduct> {
   constructor() {

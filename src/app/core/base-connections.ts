@@ -1,7 +1,7 @@
 import { LoggingService } from "@/services/logging-service.js";
 import { MocodyInitializerDynamo } from "mocody";
 import { SystemService } from "@/services/system-service.js";
-import { getAWSCredentialCollection } from "../config/env.js";
+import { getAWSCredentialCollection } from "@/config/env.js";
 
 class ConnectionsBase {
   private _dynamoConn: MocodyInitializerDynamo | undefined;

@@ -6,7 +6,7 @@ import {
   JoiStringPhoneNumber,
 } from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
-import { IStaff } from "./staff-types.js";
+import { IStaff } from "@/common/staff/staff-types.js";
 
 export class StaffModel extends BaseTenantModelFunc<IStaff>() {}
 

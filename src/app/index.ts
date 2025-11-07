@@ -1,12 +1,12 @@
-import { envConfig } from "./config/env.js";
+import { envConfig } from "@/config/env.js";
 import compression from "compression";
 import cors from "cors";
 import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
-import { ApiRoutesResolver } from "./routes/main.js";
-import { StatusCode } from "./helper/status-code.js";
-import { BaseRoutesResolver } from "./routes/base.js";
+import { ApiRoutesResolver } from "@/routes/main.js";
+import { StatusCode } from "@/helper/status-code.js";
+import { BaseRoutesResolver } from "@/routes/base.js";
 
 const app = express();
 

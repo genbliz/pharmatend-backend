@@ -1,7 +1,7 @@
-import { TenantSettingModel } from "./tenant-setting-model.js";
+import { TenantSettingModel } from "@/common/tenant/tenant-setting/tenant-setting-model.js";
 import { ISessionUser } from "@/account/auth/auth-types.js";
 import { CoreTenantRepository } from "@/core/core-tenant-repository.js";
-import { ITenantSetting } from "./tenant-setting-types.js";
+import { ITenantSetting } from "@/common/tenant/tenant-setting/tenant-setting-types.js";
 
 class TenantSettingRepositoryBase extends CoreTenantRepository<ITenantSetting> {
   constructor() {

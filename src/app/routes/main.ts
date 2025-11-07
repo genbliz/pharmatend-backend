@@ -7,8 +7,8 @@ import { SaleRouter } from "@/common/order-sale/sale/sale-controller.js";
 import { PaymentRouter } from "@/common/payment/payment-controller.js";
 import { StaffRouter } from "@/common/staff/staff-controller.js";
 import { TenantSettingRoute } from "@/common/tenant/tenant-setting/tenant-setting-controller.js";
-import { UserRouter } from "../account/user/user-controller.js";
-import { AuthRouter } from "../account/auth/auth-controller.js";
+import { UserRouter } from "@/account/user/user-controller.js";
+import { AuthRouter } from "@/account/auth/auth-controller.js";
 
 const myRouter = express.Router();
 

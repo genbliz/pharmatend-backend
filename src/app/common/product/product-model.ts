@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { JoiStringDefaultOrStrip, JoiDateFormat_YYYY_MM_DD, JoiStripWhenNull } from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
-import { IProduct, ProductCategoryEnum } from "./product-types.js";
+import { IProduct, ProductCategoryEnum } from "@/common/product/product-types.js";
 
 export class ProductModel extends BaseTenantModelFunc<IProduct>() {}
 

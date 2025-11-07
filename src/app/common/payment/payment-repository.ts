@@ -1,7 +1,7 @@
 import { CoreTenantRepository } from "@/core/core-tenant-repository.js";
 import { ISessionUser } from "@/account/auth/auth-types.js";
-import { IPayment } from "./payment-types.js";
-import { PaymentModel } from "./payment-model.js";
+import { IPayment } from "@/common/payment/payment-types.js";
+import { PaymentModel } from "@/common/payment/payment-model.js";
 
 class PaymentRepositoryBase extends CoreTenantRepository<IPayment> {
   constructor() {

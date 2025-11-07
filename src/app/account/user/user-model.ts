@@ -5,9 +5,9 @@ import {
   JoiStringPhoneNumber,
   JoiStripWhenNull,
 } from "@/core/base-joi-helper.js";
-import { getUserKindsArray, IUser } from "./user-types.js";
+import { getUserKindsArray, IUser } from "@/account/user/user-types.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
-import { GenderEnum } from "../../core/base-types.js";
+import { GenderEnum } from "@/core/base-types.js";
 
 const userKindArray = getUserKindsArray();
 

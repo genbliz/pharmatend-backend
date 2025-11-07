@@ -1,7 +1,7 @@
 import Joi from "joi";
 import { JoiStringDefaultOrStrip, JoiStripWhenNull } from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
-import { ISale } from "./sale-types.js";
+import { ISale } from "@/common/order-sale/sale/sale-types.js";
 
 export class SaleModel extends BaseTenantModelFunc<ISale>() {}
 

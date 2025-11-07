@@ -1,7 +1,7 @@
 import { CoreTenantRepository } from "@/core/core-tenant-repository.js";
 import { ISessionUser } from "@/account/auth/auth-types.js";
-import { ICustomer } from "./customer-types.js";
-import { CustomerModel } from "./customer-model.js";
+import { ICustomer } from "@/common/customer/customer-types.js";
+import { CustomerModel } from "@/common/customer/customer-model.js";
 
 class CustomerRepositoryBase extends CoreTenantRepository<ICustomer> {
   constructor() {

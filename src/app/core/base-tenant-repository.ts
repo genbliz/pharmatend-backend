@@ -8,10 +8,10 @@ import type {
   IMocodyQueryDefinition,
 } from "mocody";
 import Joi from "joi";
-import { DefinedIndexes } from "./base-constants.js";
-import { MyQueryBuilder } from "./base-query-builder.js";
-import { BaseRepository } from "./base-repository.js";
-import type { ICoreEntityTenantModel, IDataSortKey } from "./base-types.js";
+import { DefinedIndexes } from "@/core/base-constants.js";
+import { MyQueryBuilder } from "@/core/base-query-builder.js";
+import { BaseRepository } from "@/core/base-repository.js";
+import type { ICoreEntityTenantModel, IDataSortKey } from "@/core/base-types.js";
 import lodash from "lodash";
 
 interface ICoreRepoOptions<T> {

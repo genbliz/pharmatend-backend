@@ -1,5 +1,5 @@
 import fs from "fs";
-import { getAllAuthorizationPermissionParameters } from "./authorization-permission.js";
+import { getAllAuthorizationPermissionParameters } from "@/account/authorization/authorization-permission.js";
 
 const {
   //

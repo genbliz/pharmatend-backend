@@ -4,8 +4,8 @@ import { DocumentAssetUploadS3Service } from "@/services/document-asset-upload-s
 import { FormDataUploadRequestService } from "@/services/formdata-upload-request-service.js";
 import { FileOperationService } from "@/services/file-operation-service.js";
 import { S3UploadPathAllocator } from "@/services/s3-upload-path-allocator.js";
-import { UniqueIdGeneratorService } from "./unique-id-generator-service.js";
-import { ResponseMessage } from "../helper/response-message.js";
+import { UniqueIdGeneratorService } from "@/services/unique-id-generator-service.js";
+import { ResponseMessage } from "@/helper/response-message.js";
 
 export class TenantLevelS3UploadServiceBase {
   private readonly s3Folder: string;

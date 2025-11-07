@@ -1,7 +1,7 @@
 import { JoiStringDefaultOrStrip, JoiStripWhenNull } from "@/core/base-joi-helper.js";
 import Joi from "joi";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
-import { ITenantSetting } from "./tenant-setting-types.js";
+import { ITenantSetting } from "@/common/tenant/tenant-setting/tenant-setting-types.js";
 
 export class TenantSettingModel extends BaseTenantModelFunc<ITenantSetting>() {}
 

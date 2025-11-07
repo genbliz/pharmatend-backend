@@ -1,7 +1,7 @@
 import { envConfig } from "@/config/env.js";
-import { GenericFriendlyError } from "./../utils/errors.js";
+import { GenericFriendlyError } from "@/utils/errors.js";
 import { IMocodyIndexDefinition } from "mocody";
-import { ICoreEntityTenantModel, ICoreEntityBaseModel } from "./base-types.js";
+import { ICoreEntityTenantModel, ICoreEntityBaseModel } from "@/core/base-types.js";
 
 interface IDefinedIndexes {
   featureEntity_createdAtDate: IMocodyIndexDefinition<ICoreEntityBaseModel>;

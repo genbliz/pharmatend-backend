@@ -1,9 +1,9 @@
 import { Request, Response, Router } from "express";
 import { BaseController } from "@/core/base-controller.js";
-import { SaleRepository } from "./sale-repository.js";
-import { ISale } from "./sale-types.js";
-import { SaleModel } from "./sale-model.js";
-import { DateService } from "../../../services/date-service.js";
+import { SaleRepository } from "@/common/order-sale/sale/sale-repository.js";
+import { ISale } from "@/common/order-sale/sale/sale-types.js";
+import { SaleModel } from "@/common/order-sale/sale/sale-model.js";
+import { DateService } from "@/services/date-service.js";
 
 async function getById(req: Request, res: Response) {
   try {

@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { IUserLogin, UserLoginStatusEnum } from "./user-login-types.js";
+import { IUserLogin, UserLoginStatusEnum } from "@/account/user-login/user-login-types.js";
 import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 

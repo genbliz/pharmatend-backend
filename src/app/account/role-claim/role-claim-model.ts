@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { IRoleClaim } from "./role-claim-type.js";
+import { IRoleClaim } from "@/account/role-claim/role-claim-type.js";
 import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 

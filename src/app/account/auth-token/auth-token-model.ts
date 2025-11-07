@@ -1,6 +1,6 @@
 import Joi from "joi";
 import { JoiStringDefaultOrStrip } from "@/core/base-joi-helper.js";
-import { IAuthToken } from "./auth-token-types.js";
+import { IAuthToken } from "@/account/auth-token/auth-token-types.js";
 import { BaseCoreModelFunc } from "@/core/base-schema-model.js";
 
 export class AuthTokenModel extends BaseCoreModelFunc<IAuthToken>() {}

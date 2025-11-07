@@ -1,10 +1,10 @@
 import { ISessionUser } from "@/account/auth/auth-types.js";
 import Joi from "joi";
 import { IMocodyKeyConditionParams, IMocodyQueryDefinition } from "mocody";
-import { DefinedIndexes } from "./base-constants.js";
-import { MyQueryBuilder } from "./base-query-builder.js";
-import { BaseTenantRepository } from "./base-tenant-repository.js";
-import { ICoreEntityTargetModel, IDataSortKey } from "./base-types.js";
+import { DefinedIndexes } from "@/core/base-constants.js";
+import { MyQueryBuilder } from "@/core/base-query-builder.js";
+import { BaseTenantRepository } from "@/core/base-tenant-repository.js";
+import { ICoreEntityTargetModel, IDataSortKey } from "@/core/base-types.js";
 
 interface ICoreRepoOptions<T> {
   schemaSubDef: Joi.SchemaMap;

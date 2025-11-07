@@ -1,9 +1,9 @@
 import { Request, Response, Router } from "express";
 import { BaseController } from "@/core/base-controller.js";
-import { ProductRepository } from "./product-repository.js";
-import { IProduct, IProductExtra, ProductCategoryEnum } from "./product-types.js";
-import { DateService } from "../../services/date-service.js";
-import { ProductModel } from "./product-model.js";
+import { ProductRepository } from "@/common/product/product-repository.js";
+import { IProduct, IProductExtra, ProductCategoryEnum } from "@/common/product/product-types.js";
+import { DateService } from "@/services/date-service.js";
+import { ProductModel } from "@/common/product/product-model.js";
 
 interface IRequestParams {
   fromDate?: string;

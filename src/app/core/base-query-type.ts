@@ -1,5 +1,5 @@
 import { IMocodyQueryDefinition, IMocodyKeyConditionParams } from "mocody";
-import { IDataSortKey } from "./base-types.js";
+import { IDataSortKey } from "@/core/base-types.js";
 
 type IQueryIndexesBaic = "tenantId" | "featureEntityTenantId";
 

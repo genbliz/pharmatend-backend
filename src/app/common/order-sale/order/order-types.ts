@@ -1,5 +1,5 @@
 import { ICoreEntityTargetModel } from "@/core/base-types.js";
-import { ISale } from "../sale/sale-types.js";
+import { ISale } from "@/common/order-sale/sale/sale-types.js";
 
 export interface IOrder extends ICoreEntityTargetModel {
   grossTotal: number;

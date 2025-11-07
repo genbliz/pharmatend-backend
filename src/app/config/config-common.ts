@@ -1,8 +1,8 @@
 import os from "node:os";
 import fs from "node:fs";
 import path from "node:path";
-import { GenericFriendlyError } from "../utils/errors.js";
-import { envConfig } from "./env.js";
+import { GenericFriendlyError } from "@/utils/errors.js";
+import { envConfig } from "@/config/env.js";
 
 /** static-asset.hospiman.com */
 const static_asset_hospiman_com = "https://d3k85evsryhpso.cloudfront.net";
