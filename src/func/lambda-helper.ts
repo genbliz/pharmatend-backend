@@ -1,6 +1,6 @@
+import { StatusCode } from "@/helper/status-code.js";
 import type { APIGatewayProxyResultV2 } from "aws-lambda";
 import { Buffer } from "node:buffer";
-import { StatusCode } from "@/helpers/status-code.js";
 
 export interface ISocketRespInfo {
   statusCode?: StatusCode;

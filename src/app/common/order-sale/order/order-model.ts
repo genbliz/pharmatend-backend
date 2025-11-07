@@ -11,8 +11,12 @@ OrderModel.init({
     discount: Joi.number().min(0).required(),
     netTotal: Joi.number().min(0).required(),
     remark: JoiStringDefaultOrStrip(),
+    code: JoiStringDefaultOrStrip({ isRequired: true }),
   },
-  fieldAliases: [["customerId", "targetId"]],
+  fieldAliases: [
+    ["customerId", "targetId"],
+    ["code", "sk01"],
+  ],
   tableName: "orders",
   returnFields: "basic",
 });

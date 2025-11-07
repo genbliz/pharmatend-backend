@@ -1,0 +1,21 @@
+{
+  "eslint.enable": true,
+  "eslint.useFlatConfig": true,
+  "eslint.format.enable": true,
+  //
+  // "prettier.prettierPath": "./node_modules/prettier",
+  // "prettier.configPath": "./.prettierrc.cjs",
+  "prettier.enable": true,
+  //
+  "typescript.tsserver.log": "off",
+  "typescript.tsserver.enableTracing": false,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+
+  // Use relative or non-relative paths for auto-imports
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+  "javascript.preferences.importModuleSpecifier": "non-relative",
+
+  // Optional: Controls how VSCode resolves auto imports with index files
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "javascript.preferences.importModuleSpecifierEnding": "js"
+}

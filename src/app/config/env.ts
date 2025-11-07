@@ -133,6 +133,7 @@ export const envConfig = {
   APP_AWS_ACCESS_KEY_ID: getEnvString("APP_AWS_ACCESS_KEY_ID"),
   APP_AWS_SECRET_ACCESS_KEY: getEnvString("APP_AWS_SECRET_ACCESS_KEY"),
   APP_AWS_REGION: getEnvString("APP_AWS_REGION"),
+  APP_AWS_ACCOUNT_ID: getEnvString("APP_AWS_ACCOUNT_ID"),
   //
   APP_AWS_S3_UPLOAD_BUCKET_NAME: getEnvString("APP_AWS_S3_UPLOAD_BUCKET_NAME"),
   //
@@ -189,3 +190,19 @@ if (envConfig.NODE_ENV === "development") {
 }
 
 export type IEnvConfig = typeof envConfig;
+
+export function getAWSCredentialCollection() {
+  if (envConfig.APP_AWS_ACCESS_KEY_ID && envConfig.APP_AWS_SECRET_ACCESS_KEY) {
+    return {
+      region: envConfig.APP_AWS_REGION,
+      credentials: {
+        accountId: envConfig.APP_AWS_ACCOUNT_ID || undefined,
+        accessKeyId: envConfig.APP_AWS_ACCESS_KEY_ID,
+        secretAccessKey: envConfig.APP_AWS_SECRET_ACCESS_KEY,
+      },
+    };
+  }
+  return {
+    region: envConfig.APP_AWS_REGION,
+  };
+}

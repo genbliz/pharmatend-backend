@@ -372,8 +372,6 @@ export abstract class BaseTenantRepository<T extends ICoreEntityTenantModel> ext
       query01.addQuery({ ...query } as any);
     }
 
-    query01.addQuery({ tagsCsv: { $contains: tagName } });
-
     const { featureEntityTenantId_createdAtDate } = this._tenant_core_getIndexes();
 
     const result = await this.root__mocodyBaseInstance().mocody_getManyByIndex({

@@ -1,8 +1,10 @@
+import fs from "node:fs";
+import { randomUUID } from "node:crypto";
 import bunyan from "bunyan";
 import { envConfig } from "@/config/env.js";
 
 const streams: bunyan.Stream[] = [];
-const name = `HOSPIMAN-BACKEND-V2-${envConfig.NODE_ENV || ""}`.toUpperCase();
+const name = `PHARMATEND-V2-${envConfig.NODE_ENV || ""}`.toUpperCase();
 
 if (envConfig.NODE_ENV === "production") {
   streams.push({
@@ -23,19 +25,19 @@ const logger = bunyan.createLogger({
 });
 
 class LoggingServiceBase {
-  info(msg: unknown, ...params: unknown[]) {
+  info(info: unknown, ...params: unknown[]) {
     if (params?.length) {
-      logger.info(msg, params);
+      logger.info(info, params);
     } else {
-      logger.info(msg);
+      logger.info(info);
     }
   }
 
-  log(msg: unknown, ...params: any[]) {
+  log(message: unknown, ...params: any[]) {
     if (params?.length) {
-      logger.info(msg, params);
+      logger.info(message, params);
     } else {
-      logger.info(msg);
+      logger.info(message);
     }
   }
 
@@ -53,6 +55,23 @@ class LoggingServiceBase {
     logger.error(error);
   }
 
+  anyErrorId(id: string) {
+    return (error: unknown) => {
+      let idValue = id ? (id.startsWith("@") ? id : `@${id}`) : "";
+
+      if (idValue) {
+        if (!idValue.trim().endsWith(":")) {
+          idValue = `${idValue}::: `;
+        }
+      }
+
+      if (error instanceof Error) {
+        logger.error(idValue + error.message);
+      }
+      logger.error(error);
+    };
+  }
+
   warning(error: unknown) {
     if (error instanceof Error) {
       logger.warn(error.message);
@@ -64,20 +83,41 @@ class LoggingServiceBase {
     logger.info(msgs);
   }
 
-  logConsoleInfo(msg: unknown) {
-    logger.info(msg);
+  logConsoleInfo(info: unknown) {
+    logger.info(info);
   }
 
-  error(msg: unknown, ...params: any[]) {
-    if (params?.length) {
-      logger.error(msg, params);
-    } else {
-      logger.error(msg);
+  logInfoAndToFile(info: unknown) {
+    logger.info(info);
+    this.logToJsonFile(info);
+  }
+
+  logToJsonFile(infoObj: unknown) {
+    if (envConfig.NODE_ENV === "development" && infoObj && typeof infoObj === "object") {
+      try {
+        const fPath = [
+          new Date().toISOString().split(":").join("_").split(".").join("_"),
+          randomUUID().split("-")[0],
+        ].join("__");
+        fs.promises.writeFile(`.logs/log_temp__${fPath}.json`, JSON.stringify(infoObj, null, 2)).catch(() => {
+          /* */
+        });
+      } catch (error) {
+        logger.error(error);
+      }
     }
   }
 
-  anyInfo(msgs: unknown) {
-    logger.info(msgs);
+  error(error: unknown, ...params: any[]) {
+    if (params?.length) {
+      logger.error(error, params);
+    } else {
+      logger.error(error);
+    }
+  }
+
+  anyInfo(info: unknown) {
+    logger.info(info);
   }
 }
 

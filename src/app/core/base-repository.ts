@@ -365,10 +365,6 @@ export abstract class BaseRepository<T extends ICoreEntityBaseModel> extends Roo
 
     const dataSave01 = { ...data, ...dataMust };
 
-    if (dataSave01.tagsCsv) {
-      dataSave01.tagsCsv = dataSave01.tagsCsv.trim().toLowerCase();
-    }
-
     if (!dataSave01.recordDate) {
       dataSave01.recordDate = datePart;
     }
@@ -403,9 +399,6 @@ export abstract class BaseRepository<T extends ICoreEntityBaseModel> extends Roo
 
     const dataSave = { ...data01, ...dataMust };
 
-    if (dataSave.tagsCsv) {
-      dataSave.tagsCsv = dataSave.tagsCsv.trim().toLowerCase();
-    }
     return dataSave;
   }
 

@@ -7,6 +7,7 @@ export interface IOrder extends ICoreEntityTargetModel {
   netTotal: number;
   customerId?: string;
   remark?: string;
+  code: string;
 }
 
 export interface IOrderExtra extends IOrder {

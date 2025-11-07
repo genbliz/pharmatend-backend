@@ -11,7 +11,7 @@ class OrderRepositoryBase extends CoreTenantTargetRepository<IOrder> {
       schemaSubDef: OrderModel.getSchemaDef(),
       featureEntity: OrderModel.getTableName(),
       fieldAliases: OrderModel.getFieldAliases(),
-      strictRequiredFields: ["stringCode"],
+      strictRequiredFields: ["code"],
     });
   }
 
