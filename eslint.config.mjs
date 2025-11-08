@@ -1,12 +1,12 @@
 // @ts-check
-
 import eslint from "@eslint/js";
 // import jestPlugin from "eslint-plugin-jest";
 import globals from "globals";
 import tseslint from "typescript-eslint";
 import eslintConfigPrettier from "eslint-config-prettier/flat";
+import { defineConfig } from "eslint/config";
 
-export default tseslint.config(
+export default defineConfig(
   {
     ignores: ["build", "dist", "dist-func", "cdk.out", ".logs"],
     extends: [eslint.configs.recommended, tseslint.configs.recommended],
