@@ -13,9 +13,9 @@ async function buildIt(canOptimize) {
       tsconfig: "tsconfig-build.json",
       entryPoints: [
         { out: "serverHandler/index", in: "src/func/serverHandler.ts" },
-        // { out: "jobHandler/index", in: "src/func/jobHandler.ts" },
+        { out: "jobHandler/index", in: "src/func/jobHandler.ts" },
         // { out: "queueHandler/index", in: "src/func/queueHandler.ts" },
-        // { out: "warmUpHandler/index", in: "src/func/warmUpHandler.ts" },
+        { out: "warmUpHandler/index", in: "src/func/warmUpHandler.ts" },
         // //
         // { out: "connectHandler/index", in: "src/func/ws/connectHandler.ts" },
         // { out: "messageHandler/index", in: "src/func/ws/messageHandler.ts" },
