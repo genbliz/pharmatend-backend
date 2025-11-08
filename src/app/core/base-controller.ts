@@ -292,7 +292,6 @@ class BaseControllerBase extends BaseErrorHelperUtils {
     return this.helper_GetFriendlyErrorMessage(message);
   }
 
-  // eslint-disable-next-line no-undef
   parseOnlyNumberQuery(query: qs.ParsedQs) {
     const returnData: Record<string, number> = {} as any;
     const reqData: any = query || {};
