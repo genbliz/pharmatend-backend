@@ -1,5 +1,4 @@
 import express from "express";
-import { ConfigService } from "@/config/config-service.js";
 import { IAuthUserResult, ISessionUser } from "@/account/auth/auth-types.js";
 import { CommonConfig } from "@/config/config-common.js";
 import { CreateFriendlyError } from "@/helper/response-model.js";
@@ -34,10 +33,6 @@ class RequestSessionResponseServiceBase {
 
     if (!authorization) {
       authorization = this.getOneHeaderByKey(AUTH_TOKEN, req);
-    }
-
-    if (!authorization) {
-      authorization = this.getOneHeaderByKey(ConfigService.ClientHeadersKeys.authToken, req);
     }
 
     if (authorization) {

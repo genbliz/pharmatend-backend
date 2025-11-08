@@ -47,7 +47,7 @@ router.get("/health/db/:id", (req, res) => {
 });
 
 router.get("/countries", (req: Request, res: Response) => {
-  const cdnBaseUrl = envConfig.HOSPIMAN_ASSETS_CDN_URL;
+  const cdnBaseUrl = envConfig.ASSETS_CDN_URL;
   const counstry: ICountryInfo[] = countriesJson.map((f) => {
     return {
       name: f.name,
