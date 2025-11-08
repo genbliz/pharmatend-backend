@@ -1,5 +1,4 @@
-import Joi from "joi";
-import { ValString, ValStringCustomId, ValStripWhenNull, ValPhoneNumber } from "@/core/base-joi-helper.js";
+import * as v from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 import { IStaff } from "@/common/staff/staff-types.js";
 
@@ -7,17 +6,17 @@ export class StaffModel extends BaseTenantModelFunc<IStaff>() {}
 
 StaffModel.init({
   schema: {
-    firstName: ValString({ isRequired: true, lowercase: true, trim: true }),
-    lastName: ValString({ isRequired: true, lowercase: true, trim: true }),
-    email: ValString({ isEmail: true, lowercase: true, trim: true }),
-    phone: ValPhoneNumber({ isRequired: true }),
+    firstName: v.ValString({ isRequired: true, lowercase: true, trim: true }),
+    lastName: v.ValString({ isRequired: true, lowercase: true, trim: true }),
+    email: v.ValString({ isEmail: true, lowercase: true, trim: true }),
+    phone: v.ValPhoneNumber({ isRequired: true }),
     //
-    address: ValString({ lowercase: true, trim: true }),
-    department: ValString(),
-    managerId: [ValStripWhenNull(), ValStringCustomId()],
-    position: ValString(),
-    joinDate: ValString(),
-    roleIds: [ValStripWhenNull(), Joi.array().items(Joi.string())],
+    address: v.ValString({ lowercase: true, trim: true }),
+    department: v.ValString(),
+    managerId: v.ValStringCustomId(),
+    position: v.ValString(),
+    joinDate: v.ValString(),
+    roleIds: [v.ValStripWhenNull(), v.ValArrayItems(v.ValString())],
   },
   tableName: "staffs",
   returnFields: "basic",

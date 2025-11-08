@@ -1,13 +1,13 @@
 import { ISessionUser } from "@/account/auth/auth-types.js";
-import Joi from "joi";
 import { IMocodyKeyConditionParams, IMocodyQueryDefinition } from "mocody";
 import { DefinedIndexes } from "@/core/base-constants.js";
 import { MyQueryBuilder } from "@/core/base-query-builder.js";
 import { BaseTenantRepository } from "@/core/base-tenant-repository.js";
 import { ICoreEntityTargetModel, IDataSortKey, IFieldAliases } from "@/core/base-types.js";
+import { ISchemaMap } from "@/core/base-joi-helper.js";
 
 interface ICoreRepoOptions<T> {
-  schemaSubDef: Joi.SchemaMap;
+  schemaSubDef: ISchemaMap;
   featureEntity: string;
   strictRequiredFields: (keyof T)[];
   baseTableName: string;

@@ -1,4 +1,3 @@
-import Joi from "joi";
 import { DefinedIndexes } from "@/core/base-constants.js";
 import { RootRepository } from "@/core/root-repository.js";
 import type {
@@ -11,9 +10,10 @@ import type {
 import { ICoreEntityBaseModel, IDataSortKey } from "@/core/base-types.js";
 import { MyQueryBuilder } from "@/core/base-query-builder.js";
 import { ISessionUser } from "@/account/auth/auth-types.js";
+import { ISchemaMap } from "@/core/base-joi-helper.js";
 
 interface ICoreRepoOptions<T> {
-  schemaSubDef: Joi.SchemaMap;
+  schemaSubDef: ISchemaMap;
   featureEntity: string;
   strictRequiredFields: (keyof T)[];
   secondaryIndexOptions: IMocodyIndexDefinition<T>[];

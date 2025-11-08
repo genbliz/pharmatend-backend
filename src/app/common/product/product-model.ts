@@ -1,5 +1,4 @@
-import Joi from "joi";
-import { ValString, ValDateFormat_YYYY_MM_DD, ValStripWhenNull } from "@/core/base-joi-helper.js";
+import * as v from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 import { IProduct, ProductCategoryEnum } from "@/common/product/product-types.js";
 
@@ -9,38 +8,43 @@ const ProductCategoryArray = Object.values(ProductCategoryEnum);
 
 ProductModel.init({
   schema: {
-    name: ValString({ isRequired: true, lowercase: true, trim: true }),
-    amount: Joi.number().required().default(0).min(0),
-    reorderLevel: [ValStripWhenNull(), Joi.number().min(1)],
-    category: ValString({ isRequired: true, valid: [...ProductCategoryArray] }),
-    //
-    description: ValString({ lowercase: true }),
-    barcode: ValString({ lowercase: true }),
-    netWeight: ValString({ trim: true }),
-    grossWeight: ValString({ trim: true }),
-    imageUrl: ValString({ trim: true }),
+    name: v.ValString({ isRequired: true, lowercase: true, trim: true }),
+    amount: v.ValCurrency({ isRequired: true, min: 0, defaultValue: 0 }),
+    category: v.ValString({ isRequired: true, valid: [...ProductCategoryArray] }),
+    reorderLevel: v.ValNumber({ min: 1 }),
+    description: v.ValString({ lowercase: true }),
+    barcode: v.ValString({ lowercase: true }),
+    netWeight: v.ValString({ trim: true }),
+    grossWeight: v.ValString({ trim: true }),
+    imageUrl: v.ValString({ trim: true }),
     stockLimit: [
-      ValStripWhenNull(),
-      Joi.array().items({
-        maximum: Joi.number().min(0).required(),
-        minimum: Joi.number().min(0).required().default(1),
-      }),
+      v.ValStripWhenNull(),
+      v.ValArrayItems(
+        v.ValObject({
+          maximum: v.ValNumber({ isRequired: true, min: 0 }),
+          minimum: v.ValNumber({ isRequired: true, min: 0, defaultValue: 1 }),
+        }),
+      ),
     ],
     specialPromo: [
-      ValStripWhenNull(),
-      Joi.array().items({
-        itemCount: Joi.number().min(0).required(),
-        price: Joi.number().min(0).required().default(1),
-        startDate: ValDateFormat_YYYY_MM_DD({ isRequired: true }),
-        endDate: ValDateFormat_YYYY_MM_DD({ isRequired: true }),
-      }),
+      v.ValStripWhenNull(),
+      v.ValArrayItems(
+        v.ValObject({
+          itemCount: v.ValNumber({ isRequired: true, min: 0, isInteger: true }),
+          price: v.ValCurrency({ isRequired: true, min: 0, defaultValue: 1 }),
+          startDate: v.ValDateFormat_YYYY_MM_DD({ isRequired: true }),
+          endDate: v.ValDateFormat_YYYY_MM_DD({ isRequired: true }),
+        }),
+      ),
     ],
     brand: [
-      ValStripWhenNull(),
-      Joi.array().items({
-        name: ValString({ isRequired: true }),
-        dataId: ValString({ isRequired: true }),
-      }),
+      v.ValStripWhenNull(),
+      v.ValArrayItems(
+        v.ValObject({
+          name: v.ValString({ isRequired: true }),
+          dataId: v.ValString({ isRequired: true }),
+        }),
+      ),
     ],
   },
   fieldAliases: [

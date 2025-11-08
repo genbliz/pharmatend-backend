@@ -575,8 +575,24 @@ export function ValArrayItems<T extends Joi.SchemaLikeWithoutArray>(items: T) {
   return Joi.array().items(items);
 }
 
+export function ValArrayItemsRequired<T extends Joi.SchemaLikeWithoutArray>(items: T) {
+  return Joi.array().items(items).required();
+}
+
+export function ValArrayItemsOptional<T extends Joi.SchemaLikeWithoutArray>(items: T) {
+  return Joi.array().items(items).optional();
+}
+
 export function ValObject<T>(schema: Joi.PartialSchemaMap<T>) {
   return Joi.object<T>().keys(schema);
+}
+
+export function ValObjectRequired<T>(schema: Joi.PartialSchemaMap<T>) {
+  return Joi.object<T>().keys(schema).required();
+}
+
+export function ValObjectOptional<T>(schema: Joi.PartialSchemaMap<T>) {
+  return Joi.object<T>().keys(schema).optional();
 }
 
 export function ValObjectUnknown<T>(schema?: Joi.PartialSchemaMap<T>) {

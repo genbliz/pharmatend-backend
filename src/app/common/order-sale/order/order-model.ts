@@ -1,5 +1,4 @@
-import Joi from "joi";
-import { ValString } from "@/core/base-joi-helper.js";
+import * as v from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 import { IOrder } from "@/common/order-sale/order/order-types.js";
 
@@ -7,11 +6,11 @@ export class OrderModel extends BaseTenantModelFunc<IOrder>() {}
 
 OrderModel.init({
   schema: {
-    grossTotal: Joi.number().min(0).required(),
-    discount: Joi.number().min(0).required(),
-    netTotal: Joi.number().min(0).required(),
-    remark: ValString(),
-    code: ValString({ isRequired: true }),
+    grossTotal: v.ValNumber({ isRequired: true, min: 0 }),
+    discount: v.ValNumber({ isRequired: true, min: 0 }),
+    netTotal: v.ValNumber({ isRequired: true, min: 0 }),
+    remark: v.ValString(),
+    code: v.ValString({ isRequired: true }),
   },
   fieldAliases: [
     { source: "customerId", dest: "targetId" },

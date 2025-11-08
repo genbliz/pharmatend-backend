@@ -7,15 +7,15 @@ import type {
   IMocodyKeyConditionParams,
   IMocodyQueryDefinition,
 } from "mocody";
-import Joi from "joi";
 import { DefinedIndexes } from "@/core/base-constants.js";
 import { MyQueryBuilder } from "@/core/base-query-builder.js";
 import { BaseRepository } from "@/core/base-repository.js";
 import type { ICoreEntityTenantModel, IDataSortKey } from "@/core/base-types.js";
 import lodash from "lodash";
+import { ISchemaMap } from "@/core/base-joi-helper.js";
 
 interface ICoreRepoOptions<T> {
-  schemaSubDef: Joi.SchemaMap;
+  schemaSubDef: ISchemaMap;
   featureEntity: string;
   searchArgsFields?: (keyof T)[];
   strictRequiredFields: (keyof T)[];

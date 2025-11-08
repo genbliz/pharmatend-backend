@@ -1,5 +1,4 @@
-import { ValString, ValStripWhenNull } from "@/core/base-joi-helper.js";
-import Joi from "joi";
+import * as v from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 import { ITenantSetting } from "@/common/tenant/tenant-setting/tenant-setting-types.js";
 
@@ -7,20 +6,24 @@ export class TenantSettingModel extends BaseTenantModelFunc<ITenantSetting>() {}
 
 TenantSettingModel.init({
   schema: {
-    logoImage: ValString({ trim: true }),
-    nameImage: ValString({ trim: true }),
-    canSendStaffDailyBirthdayMessage: [Joi.boolean().default(false), Joi.any().strip()],
-    staffDailyBirthdayMessageTemplateId: ValString({ trim: true }),
-    dataEditLockPeriodInMunite: [Joi.number().integer(), Joi.any().strip()],
+    logoImage: v.ValString({ trim: true }),
+    nameImage: v.ValString({ trim: true }),
+    canSendStaffDailyBirthdayMessage: [
+      //
+      v.ValBoolean({ defaultVal: false }),
+      v.ValStripAnyField(),
+    ],
+    staffDailyBirthdayMessageTemplateId: v.ValString({ trim: true }),
+    dataEditLockPeriodInMunite: v.ValNumber({ isInteger: true }),
     emailSmtpOption: [
-      ValStripWhenNull(),
-      Joi.object<ITenantSetting["emailSmtpOption"]>({
-        server: Joi.string().trim().required(),
-        port: Joi.number().integer().required(),
-        userName: Joi.string().trim().required(),
-        password: Joi.string().trim().required(),
-        senderEmail: Joi.string().trim().required(),
-        authenticationMethod: Joi.string().trim().required(),
+      v.ValStripWhenNull(),
+      v.ValObject<ITenantSetting["emailSmtpOption"]>({
+        port: v.ValNumber({ isInteger: true }),
+        server: v.ValString({ isRequired: true }),
+        userName: v.ValString({ trim: true, isRequired: true }),
+        password: v.ValString({ isRequired: true }),
+        senderEmail: v.ValString({ isEmail: true, isRequired: true }),
+        authenticationMethod: v.ValString({ trim: true, isRequired: true }),
       }),
     ],
   },

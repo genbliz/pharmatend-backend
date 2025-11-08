@@ -1,6 +1,5 @@
-import Joi from "joi";
+import * as v from "@/core/base-joi-helper.js";
 import { IUserLogin, UserLoginStatusEnum } from "@/account/user-login/user-login-types.js";
-import { ValString } from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 
 const UserLoginStatusArray = Object.values(UserLoginStatusEnum);
@@ -9,11 +8,9 @@ export class UserLoginModel extends BaseTenantModelFunc<IUserLogin>() {}
 
 UserLoginModel.init({
   schema: {
-    userId: ValString({ isRequired: true }),
-    status: Joi.string()
-      .valid(...UserLoginStatusArray)
-      .required(),
-    remark: ValString({ trim: true }),
+    userId: v.ValString({ isRequired: true }),
+    status: v.ValString({ isRequired: true, valid: UserLoginStatusArray }),
+    remark: v.ValString({ trim: true }),
   },
   tableName: "users_logins",
   returnFields: "basic",

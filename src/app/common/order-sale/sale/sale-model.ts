@@ -1,5 +1,4 @@
-import Joi from "joi";
-import { ValString, ValStripWhenNull } from "@/core/base-joi-helper.js";
+import * as v from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 import { ISale } from "@/common/order-sale/sale/sale-types.js";
 
@@ -7,17 +6,17 @@ export class SaleModel extends BaseTenantModelFunc<ISale>() {}
 
 SaleModel.init({
   schema: {
-    name: ValString({ isRequired: true, trim: true, lowercase: true }),
-    quantity: Joi.number().integer().min(1).required(),
-    amount: Joi.number().min(0).required(),
+    name: v.ValString({ isRequired: true, trim: true, lowercase: true }),
+    quantity: v.ValNumber({ isRequired: true, min: 1, isInteger: true }),
+    amount: v.ValNumber({ isRequired: true, min: 0 }),
     //
-    total: Joi.number().min(0).required(),
-    discounted: [ValStripWhenNull(), Joi.number().min(0).required()],
+    total: v.ValNumber({ isRequired: true, min: 0 }),
+    discounted: v.ValNumber({ isRequired: true, min: 0 }),
     //
-    orderId: ValString({ isRequired: true }),
-    productId: ValString({ isRequired: true }),
+    orderId: v.ValString({ isRequired: true }),
+    productId: v.ValString({ isRequired: true }),
     //
-    remark: ValString(),
+    remark: v.ValString(),
   },
   fieldAliases: [{ source: "orderId", dest: "targetId" }],
   tableName: "sales",
