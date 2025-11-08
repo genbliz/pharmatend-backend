@@ -51,5 +51,5 @@ server.on("error", (error: any) => {
 // listen (start the app)
 // --------------------------------------------------------
 server.listen(port, () => {
-  LoggingService.info(`app listening on port ${port}`);
+  LoggingService.info(`app listening on: http://127.0.0.1:${port}`);
 });

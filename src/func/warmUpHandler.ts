@@ -60,7 +60,6 @@ const runWarmUpFunc = async (event: { jobsToRun?: any[]; warmUpFunctions?: strin
   LoggingService.log(`WarmUp Handler: "${context.functionName}"; ran @ ${time}`);
   LoggingService.log(JSON.stringify(event));
   if (event?.jobsToRun?.length) {
-    //
     if (event.jobsToRun.includes("WARM_UP_FUNCTION_JOB")) {
       LoggingService.log(`Running Job: WARM_UP_FUNCTION_JOB`);
       await myWarmUpFunc(event.warmUpFunctions).catch((e) => console.log(e));

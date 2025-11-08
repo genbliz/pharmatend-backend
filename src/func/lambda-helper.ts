@@ -1,6 +1,6 @@
+import { Buffer } from "node:buffer";
 import { StatusCode } from "@/helper/status-code.js";
 import type { APIGatewayProxyResultV2 } from "aws-lambda";
-import { Buffer } from "node:buffer";
 
 export interface ISocketRespInfo {
   statusCode?: StatusCode;
@@ -10,10 +10,13 @@ export interface ISocketRespInfo {
 export const LambdaHelperService = (() => {
   return {
     successfullResponse({ statusCode, body }: ISocketRespInfo = {}): APIGatewayProxyResultV2 {
-      const statusCode01 =
-        statusCode && typeof statusCode === "number" && statusCode >= 200 && statusCode < 300
-          ? statusCode
-          : StatusCode.OK_200;
+      const statusCode01 = (() => {
+        if (statusCode && typeof statusCode === "number" && statusCode >= 300) {
+          return statusCode;
+        }
+        return StatusCode.InternalServerError_500;
+      })();
+
       return {
         headers: {
           "Content-Type": "application/json",
@@ -40,10 +43,13 @@ export const LambdaHelperService = (() => {
     },
 
     failureResponse({ statusCode, body }: ISocketRespInfo = {}): APIGatewayProxyResultV2 {
-      const statusCode01 =
-        statusCode && typeof statusCode === "number" && statusCode >= 300
-          ? statusCode
-          : StatusCode.InternalServerError_500;
+      const statusCode01 = (() => {
+        if (statusCode && typeof statusCode === "number" && statusCode >= 300) {
+          return statusCode;
+        }
+        return StatusCode.InternalServerError_500;
+      })();
+
       return {
         headers: {
           "Content-Type": "application/json",

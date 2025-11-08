@@ -11,7 +11,7 @@ let serverlessExpressInstance: any;
 
 function doLog(event: APIGatewayProxyEventV2, context: Context) {
   if (canDoLog) {
-    LoggingService.log({
+    LoggingService.anyInfo({
       event,
       context: {
         remainingTimeInMillis: context.getRemainingTimeInMillis(),
