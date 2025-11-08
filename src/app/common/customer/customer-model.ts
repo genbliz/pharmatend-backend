@@ -1,4 +1,4 @@
-import { JoiStringDefaultOrStrip, JoiStringPhoneNumber } from "@/core/base-joi-helper.js";
+import { ValString, ValPhoneNumber } from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 import { CustomerCategoryEnum, ICustomer } from "@/common/customer/customer-types.js";
 
@@ -8,12 +8,12 @@ const CustomerCategoryEnumArray = Object.values(CustomerCategoryEnum);
 
 CustomerModel.init({
   schema: {
-    firstName: JoiStringDefaultOrStrip({ isRequired: true }),
-    lastName: JoiStringDefaultOrStrip({ isRequired: true }),
-    email: JoiStringDefaultOrStrip({ isEmail: true }),
-    phone: JoiStringPhoneNumber({ isRequired: true }),
-    category: JoiStringDefaultOrStrip({ valid: CustomerCategoryEnumArray, isRequired: true }),
-    address: JoiStringDefaultOrStrip(),
+    firstName: ValString({ isRequired: true }),
+    lastName: ValString({ isRequired: true }),
+    email: ValString({ isEmail: true }),
+    phone: ValPhoneNumber({ isRequired: true }),
+    category: ValString({ valid: CustomerCategoryEnumArray, isRequired: true }),
+    address: ValString(),
   },
   tableName: "customers",
   returnFields: "basic",

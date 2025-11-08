@@ -11,10 +11,10 @@ import type {
 } from "@/core/base-types.js";
 
 import {
-  JoiDateISOValidation,
-  JoiDateFormat_YYYY_MM_DD,
-  JoiStringCustomId,
-  JoiStripWhenNull,
+  ValDateISOValidation,
+  ValDateFormat_YYYY_MM_DD,
+  ValStringCustomId,
+  ValStripWhenNull,
 } from "@/core/base-joi-helper.js";
 
 type IField<T> = { [P in keyof T]?: "" | 1 } | (keyof T)[];
@@ -28,26 +28,26 @@ interface ITableConfig<T> {
 }
 
 const appCoreSchemaDefinition: IBaseSchemaDefinitionCore<ICoreEntityBaseModel> = {
-  id: JoiStringCustomId({ isRequired: true }),
+  id: ValStringCustomId({ isRequired: true }),
   featureEntity: Joi.string().required().min(2),
   dangerouslyExpireAt: [Joi.string(), Joi.any().strip()],
   dangerouslyExpireAtTTL: Joi.any().strip(),
   //
   lastModifierUserId: [Joi.string(), Joi.any().strip()],
-  lastModifiedDate: [JoiDateISOValidation({ enforceFullIsoFormat: true }), Joi.any().strip()],
+  lastModifiedDate: [ValDateISOValidation({ enforceFullIsoFormat: true }), Joi.any().strip()],
   //
   creatorUserId: [Joi.string(), Joi.any().strip()],
   //
-  createdAtDate: JoiDateISOValidation({ isRequired: true, enforceFullIsoFormat: true }),
-  createdAtDayStamp: JoiDateFormat_YYYY_MM_DD({ isRequired: true }),
-  recordDate: JoiDateFormat_YYYY_MM_DD({ isRequired: true }),
+  createdAtDate: ValDateISOValidation({ isRequired: true, enforceFullIsoFormat: true }),
+  createdAtDayStamp: ValDateFormat_YYYY_MM_DD({ isRequired: true }),
+  recordDate: ValDateFormat_YYYY_MM_DD({ isRequired: true }),
   deleterUserId: [Joi.string(), Joi.any().strip()],
-  deletedAtDate: [JoiDateISOValidation({ enforceFullIsoFormat: true }), Joi.any().strip()],
+  deletedAtDate: [ValDateISOValidation({ enforceFullIsoFormat: true }), Joi.any().strip()],
   //
-  numberCode: [JoiStripWhenNull(), Joi.number().integer().min(1)],
-  sk01: [JoiStripWhenNull(), Joi.string().min(1)],
-  sk02: [JoiStripWhenNull(), Joi.string().min(1)],
-  sk03: [JoiStripWhenNull(), Joi.string().min(1)],
+  numberCode: [ValStripWhenNull(), Joi.number().integer().min(1)],
+  sk01: [ValStripWhenNull(), Joi.string().min(1)],
+  sk02: [ValStripWhenNull(), Joi.string().min(1)],
+  sk03: [ValStripWhenNull(), Joi.string().min(1)],
   targetId: [Joi.string(), Joi.any().strip()],
   customerId: [Joi.string(), Joi.any().strip()],
   //
@@ -56,13 +56,13 @@ const appCoreSchemaDefinition: IBaseSchemaDefinitionCore<ICoreEntityBaseModel> =
 
 const appCoreTenantSchemaDefinition: IBaseSchemaDefinitionCore<ICoreEntityTenantModel> = {
   ...appCoreSchemaDefinition,
-  tenantId: JoiStringCustomId({ isRequired: true }),
-  featureEntityTenantId: JoiStringCustomId({ isRequired: true }),
+  tenantId: ValStringCustomId({ isRequired: true }),
+  featureEntityTenantId: ValStringCustomId({ isRequired: true }),
 } as const;
 
 const appCoreTargetSchemaDefinition: IBaseSchemaDefinitionTenant<ICoreEntityTargetModel> = {
   ...appCoreTenantSchemaDefinition,
-  targetId: JoiStringCustomId({ isRequired: true }),
+  targetId: ValStringCustomId({ isRequired: true }),
 } as const;
 
 function resolveSchema<T>(model: any, excludes: IField<T> | undefined) {

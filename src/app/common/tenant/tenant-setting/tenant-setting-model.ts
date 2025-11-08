@@ -1,4 +1,4 @@
-import { JoiStringDefaultOrStrip, JoiStripWhenNull } from "@/core/base-joi-helper.js";
+import { ValString, ValStripWhenNull } from "@/core/base-joi-helper.js";
 import Joi from "joi";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 import { ITenantSetting } from "@/common/tenant/tenant-setting/tenant-setting-types.js";
@@ -7,13 +7,13 @@ export class TenantSettingModel extends BaseTenantModelFunc<ITenantSetting>() {}
 
 TenantSettingModel.init({
   schema: {
-    logoImage: JoiStringDefaultOrStrip({ trim: true }),
-    nameImage: JoiStringDefaultOrStrip({ trim: true }),
+    logoImage: ValString({ trim: true }),
+    nameImage: ValString({ trim: true }),
     canSendStaffDailyBirthdayMessage: [Joi.boolean().default(false), Joi.any().strip()],
-    staffDailyBirthdayMessageTemplateId: JoiStringDefaultOrStrip({ trim: true }),
+    staffDailyBirthdayMessageTemplateId: ValString({ trim: true }),
     dataEditLockPeriodInMunite: [Joi.number().integer(), Joi.any().strip()],
     emailSmtpOption: [
-      JoiStripWhenNull(),
+      ValStripWhenNull(),
       Joi.object<ITenantSetting["emailSmtpOption"]>({
         server: Joi.string().trim().required(),
         port: Joi.number().integer().required(),

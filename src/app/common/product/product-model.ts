@@ -1,5 +1,5 @@
 import Joi from "joi";
-import { JoiStringDefaultOrStrip, JoiDateFormat_YYYY_MM_DD, JoiStripWhenNull } from "@/core/base-joi-helper.js";
+import { ValString, ValDateFormat_YYYY_MM_DD, ValStripWhenNull } from "@/core/base-joi-helper.js";
 import { BaseTenantModelFunc } from "@/core/base-schema-model.js";
 import { IProduct, ProductCategoryEnum } from "@/common/product/product-types.js";
 
@@ -9,37 +9,37 @@ const ProductCategoryArray = Object.values(ProductCategoryEnum);
 
 ProductModel.init({
   schema: {
-    name: JoiStringDefaultOrStrip({ isRequired: true, lowercase: true, trim: true }),
+    name: ValString({ isRequired: true, lowercase: true, trim: true }),
     amount: Joi.number().required().default(0).min(0),
-    reorderLevel: [JoiStripWhenNull(), Joi.number().min(1)],
-    category: JoiStringDefaultOrStrip({ isRequired: true, valid: [...ProductCategoryArray] }),
+    reorderLevel: [ValStripWhenNull(), Joi.number().min(1)],
+    category: ValString({ isRequired: true, valid: [...ProductCategoryArray] }),
     //
-    description: JoiStringDefaultOrStrip({ lowercase: true }),
-    barcode: JoiStringDefaultOrStrip({ lowercase: true }),
-    netWeight: JoiStringDefaultOrStrip({ trim: true }),
-    grossWeight: JoiStringDefaultOrStrip({ trim: true }),
-    imageUrl: JoiStringDefaultOrStrip({ trim: true }),
+    description: ValString({ lowercase: true }),
+    barcode: ValString({ lowercase: true }),
+    netWeight: ValString({ trim: true }),
+    grossWeight: ValString({ trim: true }),
+    imageUrl: ValString({ trim: true }),
     stockLimit: [
-      JoiStripWhenNull(),
+      ValStripWhenNull(),
       Joi.array().items({
         maximum: Joi.number().min(0).required(),
         minimum: Joi.number().min(0).required().default(1),
       }),
     ],
     specialPromo: [
-      JoiStripWhenNull(),
+      ValStripWhenNull(),
       Joi.array().items({
         itemCount: Joi.number().min(0).required(),
         price: Joi.number().min(0).required().default(1),
-        startDate: JoiDateFormat_YYYY_MM_DD({ isRequired: true }),
-        endDate: JoiDateFormat_YYYY_MM_DD({ isRequired: true }),
+        startDate: ValDateFormat_YYYY_MM_DD({ isRequired: true }),
+        endDate: ValDateFormat_YYYY_MM_DD({ isRequired: true }),
       }),
     ],
     brand: [
-      JoiStripWhenNull(),
+      ValStripWhenNull(),
       Joi.array().items({
-        name: JoiStringDefaultOrStrip({ isRequired: true }),
-        dataId: JoiStringDefaultOrStrip({ isRequired: true }),
+        name: ValString({ isRequired: true }),
+        dataId: ValString({ isRequired: true }),
       }),
     ],
   },

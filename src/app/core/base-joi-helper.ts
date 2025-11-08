@@ -1,23 +1,28 @@
 import Joi from "joi";
-import { isValidPhoneNumber, findNumbers } from "libphonenumber-js";
-import { UtilService } from "@/services/util-service.js";
-import { DateService } from "@/services/date-service.js";
+import { isValidPhoneNumber, findPhoneNumbersInText } from "libphonenumber-js";
 
 export type ISchemaMap = Joi.SchemaMap;
-
-export function getJoiValidationErrors(err: Joi.ValidationError): string | null {
-  if (err?.details?.length) {
-    const details = UtilService.convertObjectToJsonPlainObject(err.details);
-    const joiData = details.map((x) => x.message.replace(new RegExp('"', "g"), ""));
-    return joiData.join("; ");
-  }
-  return null;
-}
+export type IObjectSchema<T> = Joi.ObjectSchema<T>;
 
 const joi_phone_number = (phoneString: string, helpers: Joi.CustomHelpers) => {
   if (phoneString.startsWith("+") && isValidPhoneNumber(phoneString)) {
-    const [numberFound] = findNumbers(phoneString, { v2: true });
-    if (numberFound?.number?.country === "NG" && numberFound.number.nationalNumber.length !== 10) {
+    const [numberFound] = findPhoneNumbersInText(phoneString);
+    if (numberFound?.number?.country === "NG") {
+      const nationalNumber01 = numberFound.number.nationalNumber;
+      if (nationalNumber01.length === 10) {
+        return phoneString;
+      }
+      if (nationalNumber01.length === 12) {
+        // format help line: "+234700494342466" => "700494342466"
+        if (nationalNumber01[1] === "0" && nationalNumber01[2] === "0") {
+          return phoneString;
+        }
+      }
+      if (nationalNumber01.length === 8 || nationalNumber01.length === 9) {
+        // eg: format for land lines: (Lagos) "+23414607560" => "14607560"
+        // eg: format for land lines: (Enugu) "+234424607560" => "424607560"
+        return phoneString;
+      }
       throw new Error(`'${numberFound.number.number}' not valid a valid phone number length`);
     }
     return phoneString;
@@ -104,16 +109,6 @@ const joi_mm_dd_method = (mmddDateString: string, helpers: Joi.CustomHelpers) =>
   return mmddDateString;
 };
 
-const joi_email_method = (email: string, helpers: Joi.CustomHelpers) => {
-  if (email) {
-    const errorMsg = `'${helpers.original}' is not a valid email`;
-    if (!UtilService.isValidEmail(email)) {
-      throw new Error(errorMsg);
-    }
-  }
-  return email;
-};
-
 const joi_yyyy_method = (dateString: string, helpers: Joi.CustomHelpers) => {
   const errorMsg = `'${helpers.original}' not valid. Value must be valid date format: YYYY`;
   const validated = joi_yyyy_mm_dd_base(`${dateString}-01-01`, errorMsg);
@@ -123,60 +118,18 @@ const joi_yyyy_method = (dateString: string, helpers: Joi.CustomHelpers) => {
   return dateString;
 };
 
-const joi_orderId_yyyymmddmm_method = (orderString: string, helpers: Joi.CustomHelpers) => {
-  const errorMsg = `'${helpers.original}' not valid order code`;
-
-  if (!(orderString && orderString.length === 18)) {
-    throw new Error(errorMsg);
-  }
-
-  const [orderString01, randomCode] = orderString.split("-");
-
-  if (!(orderString01 && randomCode && orderString01.length === 12 && randomCode.length === 5)) {
-    throw new Error(errorMsg);
-  }
-
-  const tomorrow = DateService.addDays({ date: new Date(), days: 1 });
-
-  const year = Number(orderString01.slice(0, 4));
-  const month = Number(orderString01.slice(4, 6));
-  const day = Number(orderString01.slice(6, 8));
-  const hour = Number(orderString01.slice(8, 10));
-  const minute = Number(orderString01.slice(10));
-
-  if (!(year && year >= 1900 && year <= tomorrow.getFullYear())) {
-    throw new Error(errorMsg);
-  }
-
-  if (!(month && month >= 1 && month <= 12)) {
-    throw new Error(errorMsg);
-  }
-
-  if (!(day && day >= 1 && day <= 31)) {
-    throw new Error(errorMsg);
-  }
-
-  if (!(hour && hour >= 0 && hour <= 23)) {
-    throw new Error(errorMsg);
-  }
-
-  if (!(minute && minute >= 0 && minute <= 59)) {
-    throw new Error(errorMsg);
-  }
-
-  return orderString;
-};
-
-export function JoiDateISOValidation({
+export function ValDateISOValidation({
   isRequired,
   defaultVal,
   defaultNow,
   enforceFullIsoFormat,
+  label,
 }: {
   isRequired?: boolean;
   defaultNow?: boolean;
   enforceFullIsoFormat?: boolean;
   defaultVal?: () => string;
+  label?: string;
 } = {}) {
   //
   if (enforceFullIsoFormat === true) {
@@ -206,11 +159,15 @@ export function JoiDateISOValidation({
     }
 
     if (defaultNow === true) {
-      return joiInst.default(() => new Date().toISOString());
+      return joiInst.strict(false).default(() => new Date().toISOString());
     }
     return joiInst;
   }
-  const joiInst = Joi.string().isoDate();
+  let joiInst = Joi.string().empty("").isoDate().strict(false);
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
 
   if (isRequired === true) {
     return joiInst.required();
@@ -221,13 +178,14 @@ export function JoiDateISOValidation({
   if (defaultNow === true) {
     return joiInst.default(() => new Date().toISOString());
   }
-  return joiInst;
+  return Joi.alternatives<string>([ValStripWhenNull(), joiInst]);
 }
 
-export function JoiIsoTimeFormat_HH_MM({
+export function ValIsoTimeFormat_HH_MM({
   isRequired,
   defaultNow,
-}: { isRequired?: boolean; defaultNow?: boolean } = {}) {
+  label,
+}: { isRequired?: boolean; defaultNow?: boolean; label?: string } = {}) {
   //
   const isoTimeFormatFunc = (hh_mm: string, helpers: Joi.CustomHelpers) => {
     const msg = `'${helpers.original}' not valid. Value must be valid iso time and format: HH:MM`;
@@ -258,7 +216,11 @@ export function JoiIsoTimeFormat_HH_MM({
     return hh_mm;
   };
 
-  const joiInst = Joi.string().empty("").custom(isoTimeFormatFunc, "iso time").strict(false);
+  let joiInst = Joi.string().empty("").custom(isoTimeFormatFunc, "iso time").strict(false);
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
 
   if (isRequired === true) {
     return joiInst.required();
@@ -273,76 +235,146 @@ export function JoiIsoTimeFormat_HH_MM({
   return joiInst;
 }
 
-export function JoiDateFormat_YYYY_MM_DD({
+export function ValDateFormat_YYYY_MM_DD({
   isRequired,
   useTodayAsDefault,
-}: { isRequired?: boolean; useTodayAsDefault?: boolean } = {}) {
+  max,
+  label,
+}: {
+  isRequired?: boolean;
+  useTodayAsDefault?: boolean;
+  max?: "today"; // | "tomorrow" | "yestarday";
+  label?: string;
+} = {}) {
   let joiInst = Joi.string().empty("").custom(joi_yyyy_mm_dd_method, "custom YYYY-MM-DD validation");
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
 
   if (useTodayAsDefault === true) {
     joiInst = joiInst.default(() => {
       return new Date().toISOString().split("T")[0];
     });
   }
+
+  if (max === "today") {
+    joiInst = joiInst.custom((value, helpers) => {
+      const date01 = new Date().toISOString().split("T")[0];
+      if (value > date01) {
+        const errorMsg = `'${helpers.original}' not valid. Date must not be graeter than today: ${date01}`;
+        throw new Error(errorMsg);
+      }
+      return value;
+    });
+  }
+
   if (isRequired === true) {
     return joiInst.required();
   }
-  return [JoiStripWhenNull(), joiInst] as [Joi.AnySchema<any>, Joi.StringSchema<string>];
+  return Joi.alternatives<string>([ValStripWhenNull(), joiInst]);
 }
 
-export function JoiDateFormat_YYYY_MM({ isRequired }: { isRequired?: boolean } = {}) {
-  const joiInst = Joi.string().custom(joi_yyyy_mm_method, "custom YYYY-MM validation");
+export function ValDateFormat_YYYY_MM({ isRequired, label }: { isRequired?: boolean; label?: string } = {}) {
+  let joiInst = Joi.string().custom(joi_yyyy_mm_method, "custom YYYY-MM validation");
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
+
   if (isRequired === true) {
     return joiInst.required();
   }
-  return joiInst;
+  return Joi.alternatives<string>([ValStripWhenNull(), joiInst]);
 }
 
-export function JoiDateFormat_MM_DD({ isRequired }: { isRequired?: boolean } = {}) {
-  const joiInst = Joi.string().custom(joi_mm_dd_method, "custom MM-DD validation");
+export function ValDateFormat_MM_DD({ isRequired, label }: { isRequired?: boolean; label?: string } = {}) {
+  let joiInst = Joi.string().custom(joi_mm_dd_method, "custom MM-DD validation");
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
   if (isRequired === true) {
     return joiInst.required();
   }
-  return joiInst;
+  return Joi.alternatives<string>([ValStripWhenNull(), joiInst]);
 }
 
-export function JoiOrderIdCode({ isRequired }: { isRequired?: boolean } = {}) {
-  const joiInst = Joi.string().custom(joi_orderId_yyyymmddmm_method, "order code validation");
+export function ValDateFormat_YYYY({ isRequired, label }: { isRequired?: boolean; label?: string } = {}) {
+  let joiInst = Joi.string().custom(joi_yyyy_method, "custom YYYY validation");
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
   if (isRequired === true) {
     return joiInst.required();
   }
-  return joiInst;
+  return Joi.alternatives<string>([ValStripWhenNull(), joiInst]);
 }
 
-export function JoiDateFormat_YYYY({ isRequired }: { isRequired?: boolean } = {}) {
-  const joiInst = Joi.string().custom(joi_yyyy_method, "custom YYYY validation");
-  if (isRequired === true) {
-    return joiInst.required();
+export function ValStringCustomId({ isRequired, label }: { isRequired?: boolean; label?: string } = {}) {
+  let joiInst = Joi.string()
+    .empty("")
+    .pattern(/^[A-Za-z0-9\-_:#]+$/)
+    .trim()
+    .min(4)
+    .max(512)
+    .trim();
+
+  if (label) {
+    joiInst = joiInst.label(label);
   }
-  return joiInst;
-}
 
-export function JoiStringCustomId({ isRequired }: { isRequired?: boolean } = {}) {
-  const joiInst = Joi.string().trim().min(4).max(512).trim();
   if (isRequired) {
     return joiInst.required();
   }
-  return joiInst;
+  return Joi.alternatives<string>([ValStripWhenNull(), joiInst]);
 }
 
-export function JoiStringPhoneNumber({ isRequired }: { isRequired?: boolean } = {}) {
-  const joiInst = Joi.string().empty("").custom(joi_phone_number);
+export function ValPhoneNumber({ isRequired, label }: { isRequired?: boolean; label?: string } = {}) {
+  let joiInst = Joi.string().empty("").trim().custom(joi_phone_number);
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
+
   if (isRequired) {
     return joiInst.required();
   }
-  return [JoiStripWhenNull(), joiInst] as [Joi.AnySchema<any>, Joi.StringSchema<string>];
+  return Joi.alternatives<string>([ValStripWhenNull(), joiInst]);
 }
 
-export function JoiStripWhenNull() {
+export function ValStripWhenNull() {
   return Joi.any().empty("").valid(null).strip();
 }
 
-export function JoiStringDefaultOrStrip({
+export function ValBoolean({
+  isRequired,
+  label,
+  defaultVal,
+}: { isRequired?: boolean; label?: string; defaultVal?: boolean } = {}) {
+  let joiInst = Joi.boolean();
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
+
+  if (typeof defaultVal === "boolean") {
+    joiInst = joiInst.default(defaultVal);
+  }
+
+  if (isRequired) {
+    return joiInst.required();
+  }
+
+  if (typeof defaultVal === "boolean") {
+    return joiInst;
+  }
+
+  return Joi.alternatives<boolean>([ValStripWhenNull(), joiInst]);
+}
+
+export function ValString({
   isRequired,
   lowercase,
   uppercase,
@@ -351,15 +383,29 @@ export function JoiStringDefaultOrStrip({
   valid,
   min,
   max,
+  pattern,
+  message,
+  label,
+  isUUID,
+  defaultValue,
+  isAlphNumeric,
+  isNumeric,
 }: {
   isRequired?: boolean;
   lowercase?: boolean;
   uppercase?: boolean;
   isEmail?: boolean;
+  isUUID?: boolean;
   trim?: boolean;
   min?: number;
   max?: number;
   valid?: any[];
+  pattern?: RegExp;
+  message?: string;
+  label?: string;
+  isAlphNumeric?: boolean;
+  isNumeric?: boolean;
+  defaultValue?: string | (() => string);
 } = {}) {
   let joiInst = Joi.string().empty("");
   if (lowercase) {
@@ -371,9 +417,29 @@ export function JoiStringDefaultOrStrip({
   if (trim) {
     joiInst = joiInst.trim();
   }
-  if (isEmail) {
-    joiInst = joiInst.custom(joi_email_method);
+  if (message) {
+    joiInst = joiInst.message(message);
   }
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
+
+  if (isAlphNumeric) {
+    joiInst = joiInst.alphanum();
+  } else if (isNumeric) {
+    joiInst = joiInst.regex(/^[0-9]+$/);
+  }
+
+  if (pattern) {
+    joiInst = joiInst.pattern(pattern);
+  }
+
+  if (isEmail) {
+    joiInst = joiInst.email();
+  } else if (isUUID) {
+    joiInst = joiInst.uuid();
+  }
+
   if (valid?.length) {
     joiInst = joiInst.valid(...valid);
   }
@@ -386,9 +452,151 @@ export function JoiStringDefaultOrStrip({
     joiInst = joiInst.max(max);
   }
 
+  const isValidDefault = defaultValue && (typeof defaultValue === "string" || typeof defaultValue === "function");
+
+  if (isValidDefault) {
+    joiInst = joiInst.default(defaultValue);
+  }
+
   if (isRequired) {
     return joiInst.required();
   }
 
-  return [JoiStripWhenNull(), joiInst] as [Joi.AnySchema<any>, Joi.StringSchema<string>];
+  if (isValidDefault) {
+    return joiInst;
+  }
+
+  return Joi.alternatives<string>([ValStripWhenNull(), joiInst]);
 }
+
+export function ValCurrency({
+  isRequired,
+  min,
+  max,
+  defaultValue,
+  isInteger,
+  label,
+}: {
+  isRequired?: boolean;
+  min?: number;
+  max?: number;
+  defaultValue?: number;
+  isInteger?: boolean;
+  label?: string;
+} = {}) {
+  let joiInst = Joi.number().precision(2);
+
+  if (min) {
+    joiInst = joiInst.min(min);
+  }
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
+
+  if (max) {
+    joiInst = joiInst.max(max);
+  }
+
+  if (isInteger) {
+    joiInst = joiInst.integer();
+  }
+
+  if (typeof defaultValue === "number") {
+    joiInst = joiInst.default(defaultValue);
+  }
+
+  if (isRequired) {
+    return joiInst.required();
+  }
+
+  if (typeof defaultValue === "number") {
+    return joiInst;
+  }
+
+  return Joi.alternatives<number>([ValStripWhenNull(), joiInst]);
+}
+
+export function ValNumber({
+  isRequired,
+  min,
+  max,
+  defaultValue,
+  isInteger,
+  label,
+  valid,
+}: {
+  isRequired?: boolean;
+  min?: number;
+  max?: number;
+  defaultValue?: number;
+  isInteger?: boolean;
+  label?: string;
+  valid?: number[];
+} = {}) {
+  let joiInst = Joi.number().empty("");
+
+  if (min) {
+    joiInst = joiInst.min(min);
+  }
+
+  if (label) {
+    joiInst = joiInst.label(label);
+  }
+
+  if (valid?.length) {
+    joiInst = joiInst.valid(...valid);
+  }
+
+  if (max) {
+    joiInst = joiInst.max(max);
+  }
+
+  if (isInteger) {
+    joiInst = joiInst.integer();
+  }
+
+  if (typeof defaultValue === "number") {
+    joiInst = joiInst.default(defaultValue);
+  }
+
+  if (isRequired) {
+    return joiInst.required();
+  }
+
+  if (typeof defaultValue === "number") {
+    return joiInst;
+  }
+
+  return Joi.alternatives<number>([ValStripWhenNull(), joiInst]);
+}
+
+export function ValArrayItems<T extends Joi.SchemaLikeWithoutArray>(items: T) {
+  return Joi.array().items(items);
+}
+
+export function ValObject<T>(schema: Joi.PartialSchemaMap<T>) {
+  return Joi.object<T>().keys(schema);
+}
+
+export function ValObjectUnknown<T>(schema?: Joi.PartialSchemaMap<T>) {
+  if (schema) {
+    return Joi.object<T>().keys(schema).unknown(true);
+  }
+  return Joi.object<T>().unknown(true);
+}
+
+export function ValObjectPattern<T>({
+  pattern,
+  schema,
+  options,
+}: {
+  pattern: RegExp | Joi.SchemaLike;
+  schema: Joi.PartialSchemaMap<T>;
+  options?: Joi.ObjectPatternOptions;
+}) {
+  return Joi.object<T>().pattern(pattern, schema, options);
+}
+
+export const ValStripAnyField = () => Joi.any().strip();
+export const ValAnyValue = () => Joi.any();
